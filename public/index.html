@@ -7,7 +7,7 @@
   <!-- Google Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -21,8 +21,6 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            arabic: ['"Amiri"', 'serif'],
-            urdu: ['"Noto Nastaliq Urdu"', 'serif'],
           },
           colors: {
             brand: {
@@ -50,15 +48,6 @@
     }
   </script>
   <style>
-    .urdu-text {
-      direction: rtl;
-      font-family: 'Noto Nastaliq Urdu', serif;
-      line-height: 2.2;
-    }
-    .arabic-text {
-      direction: rtl;
-      font-family: 'Amiri', serif;
-    }
     @media print {
       body * {
         visibility: hidden;
@@ -81,18 +70,18 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-600 selection:text-white dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col">
 
-  <!-- Top Bismillah & Statutory Banner -->
+  <!-- Top Statutory Banner -->
   <aside class="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-950 text-white text-xs py-2 px-4 border-b border-emerald-800/50 shadow-inner">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-3">
-        <span class="arabic-text text-amber-300 font-bold text-sm tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+        <span class="text-amber-300 font-bold text-xs tracking-wider uppercase">Serving Humanity &amp; All Living Beings</span>
         <span class="hidden md:inline text-emerald-600">|</span>
         <span class="hidden lg:inline text-emerald-200">Registered Trust No: <strong>2023/33/4/54</strong> (SRO Pattan)</span>
         <span class="hidden md:inline text-emerald-600">|</span>
         <span>NITI Aayog: <strong>JK/2023/0342984</strong></span>
       </div>
       <div class="flex items-center gap-4 text-emerald-100 text-[11px] font-medium">
-        <span class="inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i> 100% Zakat &amp; Sadaqah Verified</span>
+        <span class="inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i> Certified Non-Profit</span>
         <span class="hidden sm:inline text-emerald-600">|</span>
         <span class="inline-flex items-center gap-1"><i data-lucide="receipt" class="w-3.5 h-3.5 text-emerald-400"></i> 80G Tax Exempt: <strong class="text-white font-mono">AACTI1633HF20231</strong></span>
       </div>
@@ -113,9 +102,9 @@
             INTERNATIONAL PEACE &amp; REHABILITATION ORGANISATION
           </span>
           <div class="flex items-center gap-2 text-xs">
-            <span class="text-emerald-700 dark:text-emerald-400 font-bold urdu-text leading-none text-[13px]">عالمی امن و باز آبادی تنظیم</span>
+            <span class="text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-wider text-[11px]">Humanitarian &amp; Animal Welfare Trust</span>
             <span class="text-slate-400">&bull;</span>
-            <span class="text-slate-500 dark:text-slate-400 text-[11px] font-medium">خدمتِ خلق اور انسانی فلاح</span>
+            <span class="text-slate-500 dark:text-slate-400 text-[11px] font-medium">Compassion Across All Communities</span>
           </div>
         </div>
       </a>
@@ -123,8 +112,9 @@
       <!-- Desktop Menu -->
       <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600 dark:text-slate-300">
         <a href="#about" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">About</a>
-        <a href="#initiatives" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Causes &amp; Khidmah</a>
+        <a href="#initiatives" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Our Causes</a>
         <a href="#leadership" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Leadership</a>
+        <a href="#gallery" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Impact Gallery</a>
         <a href="#states" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Pan-India Reach</a>
         <a href="#statutory" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Compliance</a>
         <a href="#contact" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Contact</a>
@@ -134,7 +124,7 @@
       <div class="flex items-center gap-3">
         <a href="#donate" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white shadow-lg shadow-emerald-700/25 transform hover:-translate-y-0.5 active:translate-y-0 transition">
           <i data-lucide="heart-handshake" class="w-4 h-4 text-amber-200"></i>
-          <span>Give Zakat / Sadaqah</span>
+          <span>Support Our Mission</span>
         </a>
         <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800" aria-label="Toggle navigation">
           <i data-lucide="menu" class="w-6 h-6"></i>
@@ -145,9 +135,10 @@
     <!-- Mobile Drawer Menu -->
     <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-3 pb-6 space-y-3">
       <a href="#about" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">About the Organization</a>
-      <a href="#initiatives" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Community Causes (Khidmah)</a>
+      <a href="#initiatives" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Our Welfare Initiatives</a>
       <a href="#leadership" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Leadership</a>
-      <a href="#states" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">States &amp; Communities Covered</a>
+      <a href="#gallery" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Impact Gallery</a>
+      <a href="#states" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Pan-India Reach</a>
       <a href="#statutory" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Government Accreditations</a>
       <a href="#contact" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Helplines &amp; Offices</a>
       <a href="#donate" class="block text-center w-full py-3 rounded-xl bg-emerald-600 text-white font-bold">Donate with 80G Benefit</a>
@@ -159,8 +150,8 @@
     <section id="hero" class="relative overflow-hidden bg-slate-950 text-white py-20 lg:py-28">
       <div class="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=2000&q=80" 
-          alt="Islamic Community Relief & Peace" 
+          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=2000&q=80" 
+          alt="Global Humanity and Compassion" 
           class="w-full h-full object-cover opacity-25 filter saturate-50"
         >
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/60"></div>
@@ -173,26 +164,26 @@
           <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold tracking-wide">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              Registered Non-Profit Trust • Serving J&amp;K and Muslim Clusters Across India
+              Dedicated to Universal Human Welfare &amp; Animal Rescue
             </div>
 
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
-              Uplifting the Ummah. Rebuilding Dignity. <br class="hidden sm:inline">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">Empowering Grassroots Communities.</span>
+              Compassion for All Humanity. <br class="hidden sm:inline">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">Protection for Every Living Soul.</span>
             </h1>
 
             <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              The <strong>International Peace &amp; Rehabilitation Organisation (IPRO)</strong> channelizes your <strong>Zakat, Sadaqah, and Charitable Donations</strong> into direct field relief: youth de-addiction rehab, orphan care, dowry-free Nikah mass marriages, modern education for madrasa students, and widow self-reliance.
+              The <strong>International Peace &amp; Rehabilitation Organisation (IPRO)</strong> channels your voluntary contributions to directly impact every life: youth de-addiction recovery, underprivileged child education, women empowerment, universal healthcare, and stray &amp; abandoned animal rescue.
             </p>
 
             <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
               <a href="#donate" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 shadow-xl shadow-emerald-500/20 transform hover:-translate-y-0.5 transition">
-                <i data-lucide="coins" class="w-5 h-5 text-slate-950"></i>
-                <span>Discharge Your Zakat / Sadaqah</span>
+                <i data-lucide="heart" class="w-5 h-5 text-slate-950 fill-current"></i>
+                <span>Make a Contribution</span>
               </a>
               <a href="#initiatives" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-slate-200 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition">
-                <i data-lucide="book-open" class="w-5 h-5 text-emerald-400"></i>
-                <span>Explore Community Causes</span>
+                <i data-lucide="sparkles" class="w-5 h-5 text-emerald-400"></i>
+                <span>Explore Welfare Causes</span>
               </a>
             </div>
 
@@ -200,15 +191,15 @@
             <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800 text-slate-300">
               <div>
                 <p class="text-2xl font-black text-amber-400">100%</p>
-                <p class="text-xs text-slate-400 font-medium">Zakat Policy Verified</p>
+                <p class="text-xs text-slate-400 font-medium">Transparent Audits</p>
               </div>
               <div>
                 <p class="text-2xl font-black text-emerald-400">50%</p>
                 <p class="text-xs text-slate-400 font-medium">80G Tax Deductible</p>
               </div>
               <div>
-                <p class="text-2xl font-black text-blue-400">9+ States</p>
-                <p class="text-xs text-slate-400 font-medium">Grassroots Outreach</p>
+                <p class="text-2xl font-black text-blue-400">Universal</p>
+                <p class="text-xs text-slate-400 font-medium">Humans &amp; Animals</p>
               </div>
               <div>
                 <p class="text-2xl font-black text-white">43+</p>
@@ -217,11 +208,11 @@
             </div>
           </div>
 
-          <!-- Hero Right - Zakat & Donation Quick Box -->
+          <!-- Hero Right - Donation Quick Box -->
           <div class="lg:col-span-5">
             <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/15 relative text-slate-100">
               <div class="absolute -top-3 right-6 bg-gradient-to-r from-amber-500 to-emerald-500 text-slate-950 font-bold text-xs uppercase px-3.5 py-1 rounded-full shadow-md tracking-wider flex items-center gap-1">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-slate-950"></i> 80G Tax Certified
+                <i data-lucide="award" class="w-3.5 h-3.5 text-slate-950"></i> 80G Tax Certified
               </div>
 
               <div class="flex items-center gap-3 mb-5">
@@ -229,13 +220,13 @@
                   <i data-lucide="hand-heart" class="w-6 h-6"></i>
                 </div>
                 <div>
-                  <h2 class="text-lg font-bold text-white">Give Zakat / Sadaqah Today</h2>
-                  <p class="text-xs text-slate-300">Directly reaches deserving (Mustahiq) beneficiaries</p>
+                  <h2 class="text-lg font-bold text-white">Direct Humanitarian Contribution</h2>
+                  <p class="text-xs text-slate-300">Supports community relief and emergency animal welfare</p>
                 </div>
               </div>
 
               <div class="space-y-4">
-                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Choose Donation Tier</label>
+                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Choose Contribution Tier</label>
                 <div class="grid grid-cols-4 gap-2">
                   <button type="button" onclick="setQuickHeroAmount(500)" class="hero-amt-btn py-2.5 rounded-xl text-sm font-bold border border-white/20 bg-white/5 hover:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">₹500</button>
                   <button type="button" onclick="setQuickHeroAmount(1000)" class="hero-amt-btn py-2.5 rounded-xl text-sm font-bold border-2 border-emerald-400 bg-emerald-500/30 text-emerald-200 transition">₹1,000</button>
@@ -254,7 +245,7 @@
                 <div class="p-3 bg-slate-900/60 rounded-xl border border-white/10 flex items-start gap-2.5">
                   <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
                   <p class="text-xs text-slate-300 leading-snug">
-                    Strict segregation of <strong>Zakat funds</strong> strictly for eligible recipients. Tax receipt provided under <strong>Sec 80G</strong> (Reg: AACTI1633HF20231).
+                    All contributions are exempt under <strong>Section 80G</strong> of the Income Tax Act (Reg: AACTI1633HF20231). Automated receipts available instantly.
                   </p>
                 </div>
 
@@ -275,17 +266,17 @@
       </div>
     </section>
 
-    <!-- Key Focus Areas with Muslim Community Photography -->
+    <!-- Key Focus Areas: All Communities & Animal Welfare -->
     <section id="initiatives" class="py-20 bg-white dark:bg-slate-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-14">
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 dark:bg-emerald-950/60 dark:text-emerald-300 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-            Khidmat-e-Khalq (خدمتِ خلق)
+            Universal Social Service
           </span>
-          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-3">Community Welfare &amp; Rehabilitation Pillars</h2>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-3">Comprehensive Rehabilitation &amp; Welfare Pillars</h2>
           <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
-            Structured in full compliance with the registered aims of IPRO and Islamic charitable guidelines to rescue youth, educate orphans, and support distressed households.
+            Upholding the dignity of every living being through dedicated humanitarian relief, medical assistance, education, and animal care.
           </p>
         </div>
 
@@ -296,19 +287,19 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80" 
+                  src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&w=800&q=80" 
                   alt="Youth Rehabilitation & Counseling" 
                   class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
                 <span class="absolute bottom-3 left-4 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="activity" class="w-3.5 h-3.5"></i> Youth Recovery (نوجوان بحالی)
+                  <i data-lucide="activity" class="w-3.5 h-3.5"></i> Youth Recovery
                 </span>
               </div>
               <div class="p-6">
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Substance De-Addiction &amp; Youth Guidance</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Confidential counseling, provisional medical therapy, and psychological rehabilitation to save vulnerable Muslim youth from the rising menace of narcotics across Kashmir and northern states.
+                  Confidential counseling, structured medical therapy, and psychological rehabilitation to save vulnerable youth from the menace of substance abuse across regions.
                 </p>
               </div>
             </div>
@@ -318,61 +309,61 @@
             </div>
           </div>
 
-          <!-- Card 2: Mass Marriages & Orphan Girl Care -->
+          <!-- Card 2: Animal Welfare & Rescue -->
           <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
-                  alt="Orphan Care and Welfare" 
+                  src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80" 
+                  alt="Animal Welfare & Rescue" 
                   class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
                 <span class="absolute bottom-3 left-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="heart" class="w-3.5 h-3.5"></i> Dowry-Free Nikah &amp; Orphans
+                  <i data-lucide="dog" class="w-3.5 h-3.5"></i> Animal Welfare &amp; Care
                 </span>
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Orphan Sponsorship &amp; Simple Mass Marriages</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Stray Animal Rescue &amp; Veterinary Aid</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Arranging dignified, Sunnah-compliant mass Nikah for impoverished orphan girls, providing household establishment kits, and lifting catastrophic dowry burdens from destitute families.
+                  Emergency rescue, medical treatment for injured strays, winter animal sheltering, vaccinations, and community feeding programs to protect defenseless animals.
                 </p>
               </div>
             </div>
             <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
-              <span>Section C.20 Directive</span>
-              <a href="#donate" class="hover:underline flex items-center gap-1">Sponsor an Orphan <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+              <span>Compassion For All Beings</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Support Animal Care <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
             </div>
           </div>
 
-          <!-- Card 3: Modern & Madrasa Education -->
+          <!-- Card 3: Modern Education & Career Coaching -->
           <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" 
-                  alt="Education & Career Guidance" 
+                  alt="Childhood Education & Career Guidance" 
                   class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
                 <span class="absolute bottom-3 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> Ilm &amp; Skill (تعلیم و ہنر)
+                  <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> Education &amp; Skills
                 </span>
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Scholarships &amp; Civil Service Coaching</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Child Education &amp; Skill Development</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Empowering madrasa and convent students with computer literacy, competitive exam guidance (UPSC/JKPSC), higher education scholarships, and hostel admissions across India.
+                  Empowering children from all disadvantaged backgrounds with digital literacy, school books, competitive exam guidance, and higher education scholarships.
                 </p>
               </div>
             </div>
             <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400">
               <span>Section C.14 Directive</span>
-              <a href="#donate" class="hover:underline flex items-center gap-1">Fund a Student <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Fund Education <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
             </div>
           </div>
 
-          <!-- Card 4: Widow Self-Reliance & Craft Training -->
+          <!-- Card 4: Women Livelihoods & Self-Reliance -->
           <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -383,23 +374,23 @@
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
                 <span class="absolute bottom-3 left-4 bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Halal Livelihoods (حلال روزگار)
+                  <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Sustainable Livelihoods
                 </span>
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Widow Support &amp; Tailoring Centers</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Women Empowerment &amp; Vocational Training</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Setting up sewing labs, artisan embroidery workshops, and interest-free micro-seed grants for widows and destitute mothers to achieve independent financial dignity.
+                  Establishing sewing centers, artisan handicrafts training, and micro-grants for widowed, abandoned, and underprivileged women to achieve independent dignity.
                 </p>
               </div>
             </div>
             <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-emerald-700 dark:text-emerald-400">
               <span>Section C.13 &amp; C.19</span>
-              <a href="#donate" class="hover:underline flex items-center gap-1">Empower Widows <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Empower Women <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
             </div>
           </div>
 
-          <!-- Card 5: Free Medical & Hijama / Health Camps -->
+          <!-- Card 5: Free Healthcare & Mobile Camps -->
           <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -410,13 +401,13 @@
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
                 <span class="absolute bottom-3 left-4 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i> Free Healthcare (صحت و شفا)
+                  <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i> Universal Healthcare
                 </span>
               </div>
               <div class="p-6">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Free Medical &amp; Blood Donation Camps</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Universal Medical Camps &amp; Emergency Health</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Conducting physician consultations, medicine distribution, blood donor databases, and rural hygiene clinics across underserved Muslim mohallas and villages.
+                  Free physician checkups, critical dialysis assistance, essential life-saving medicine distribution, and emergency blood donation coordination.
                 </p>
               </div>
             </div>
@@ -426,7 +417,7 @@
             </div>
           </div>
 
-          <!-- Card 6: Legal Aid & Anti-Corruption Vigilance -->
+          <!-- Card 6: Human Rights & Legal Aid -->
           <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -437,13 +428,13 @@
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
                 <span class="absolute bottom-3 left-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="scale" class="w-3.5 h-3.5"></i> Human Rights (حقوق و انصاف)
+                  <i data-lucide="scale" class="w-3.5 h-3.5"></i> Justice &amp; Rights
                 </span>
               </div>
               <div class="p-6">
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Legal Defense &amp; Human Rights Advocacy</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Free court representation and legal advocacy for marginalized citizens, arbitrary detentions, and family counseling to resolve domestic disputes without bitter litigation.
+                  Free legal assistance, mediation, and civic awareness to defend human rights, prevent exploitation, and ensure equal justice for all citizens.
                 </p>
               </div>
             </div>
@@ -510,7 +501,7 @@
               </p>
 
               <blockquote class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic border-l-2 border-emerald-500 pl-4 py-1">
-                "Our foremost religious and humanitarian responsibility is to pull our youth away from the destructive grips of substance abuse, protect abandoned orphans, and empower women with halal, dignified livelihoods. Every rupee contributed to IPRO is an amanah (trust) directly deployed where pain and vulnerability are greatest."
+                "Our fundamental duty is to stand beside every vulnerable individual—regardless of background, belief, or origin—and to extend mercy to voiceless animals who share our world. Every contribution entrusted to IPRO is deployed with absolute accountability where help is most needed."
               </blockquote>
 
               <div class="pt-3 grid grid-cols-2 gap-3 text-xs border-t border-slate-100 dark:border-slate-800">
@@ -531,15 +522,68 @@
       </div>
     </section>
 
+    <!-- Authentic Field & Animal Welfare Impact Gallery -->
+    <section id="gallery" class="py-20 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Compassion in Action</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Ground Relief &amp; Care for All Beings</h2>
+          </div>
+          <p class="text-xs text-slate-500 max-w-md">
+            Direct visual insights into our community nutrition initiatives, free rural healthcare, educational sponsorships, and active animal rescue operations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Photo 1: Human Community Food Relief -->
+          <div class="group relative rounded-2xl overflow-hidden h-64 shadow-md bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Universal Humanitarian Nutrition & Food Relief" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex flex-col justify-end p-4">
+              <span class="text-xs font-bold text-amber-300">Humanity First</span>
+              <span class="text-sm font-bold text-white">Community Nutrition &amp; Aid</span>
+            </div>
+          </div>
+
+          <!-- Photo 2: Animal Welfare & Rescue -->
+          <div class="group relative rounded-2xl overflow-hidden h-64 shadow-md bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80" alt="Stray Animal Rescue and Veterinary Care" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex flex-col justify-end p-4">
+              <span class="text-xs font-bold text-emerald-400">Voiceless Lives</span>
+              <span class="text-sm font-bold text-white">Animal Care &amp; Rescue</span>
+            </div>
+          </div>
+
+          <!-- Photo 3: Child Education & Mentorship -->
+          <div class="group relative rounded-2xl overflow-hidden h-64 shadow-md bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Inclusive Childhood Education" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex flex-col justify-end p-4">
+              <span class="text-xs font-bold text-blue-300">Empowering Minds</span>
+              <span class="text-sm font-bold text-white">Inclusive Child Education</span>
+            </div>
+          </div>
+
+          <!-- Photo 4: Universal Health Checkups -->
+          <div class="group relative rounded-2xl overflow-hidden h-64 shadow-md bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80" alt="Universal Free Healthcare Clinic" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex flex-col justify-end p-4">
+              <span class="text-xs font-bold text-teal-300">Community Health</span>
+              <span class="text-sm font-bold text-white">Free Medical Checkups</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Pan-India States Coverage Section -->
     <section id="states" class="py-20 bg-slate-100 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Regional Outreach</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-2">Serving High-Density Muslim Regions Across India</h2>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">National Outreach</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-2">Serving Underprivileged Regions Across India</h2>
           <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
-            While based in Baramulla (J&amp;K), IPRO is legally mandated by its Trust Deed to expand humanitarian operations and relief networks across the nation.
+            While based in Baramulla (J&amp;K), IPRO is legally mandated by its Trust Deed to expand humanitarian operations, social rehabilitation, and animal welfare across the nation.
           </p>
         </div>
 
@@ -551,7 +595,7 @@
             </div>
             <div>
               <h4 class="font-bold text-slate-900 dark:text-white text-base">Jammu &amp; Kashmir</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Headquarters at Baramulla &amp; Pattan. Ground programs in de-addiction, orphan welfare, winter relief, and healthcare camps.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Headquarters at Baramulla &amp; Pattan. Programs in youth de-addiction, winter relief, free clinics, and animal protection.</p>
             </div>
           </div>
 
@@ -561,7 +605,7 @@
             </div>
             <div>
               <h4 class="font-bold text-slate-900 dark:text-white text-base">Uttar Pradesh</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Active networks in Moradabad, Bareilly, Aligarh, and Lucknow focusing on artisan skill training and higher education access.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Outreach focusing on artisan vocational skills, orphan schooling, and emergency veterinary clinics.</p>
             </div>
           </div>
 
@@ -571,7 +615,7 @@
             </div>
             <div>
               <h4 class="font-bold text-slate-900 dark:text-white text-base">West Bengal</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Support programs in Murshidabad, Malda, and North 24 Parganas for rural drinking water, flood aid, and child schooling.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Disaster flood aid, rural drinking water plants, child education initiatives, and livestock emergency shelter.</p>
             </div>
           </div>
 
@@ -580,8 +624,8 @@
               BR
             </div>
             <div>
-              <h4 class="font-bold text-slate-900 dark:text-white text-base">Bihar (Seemanchal)</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Serving Kishanganj, Araria, and Katihar with disaster emergency food packets, madrasa modernization, and healthcare.</p>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Bihar</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Disaster relief food rations, school infrastructure support, and rural community medical camps.</p>
             </div>
           </div>
 
@@ -591,27 +635,7 @@
             </div>
             <div>
               <h4 class="font-bold text-slate-900 dark:text-white text-base">Assam</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Field aid across Dhubri, Barpeta, and Nagaon for flood relief, legal documentation assistance, and women tailoring units.</p>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
-              KL
-            </div>
-            <div>
-              <h4 class="font-bold text-slate-900 dark:text-white text-base">Kerala</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Partnerships in Malappuram and Kozhikode for higher education counseling and specialized medical care coordination.</p>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
-              TG
-            </div>
-            <div>
-              <h4 class="font-bold text-slate-900 dark:text-white text-base">Telangana (Hyderabad)</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Urban slum outreach in Old City Hyderabad for destitute widow monthly rations, youth job skills, and dialysis support.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Flood rescue assistance, women micro-enterprise training, and wildlife preservation awareness.</p>
             </div>
           </div>
 
@@ -621,17 +645,7 @@
             </div>
             <div>
               <h4 class="font-bold text-slate-900 dark:text-white text-base">Delhi NCR</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Assisting migrant families in Okhla, Seelampur, and Mewat borders with legal aid, child education, and winter blankets.</p>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
-              MH
-            </div>
-            <div>
-              <h4 class="font-bold text-slate-900 dark:text-white text-base">Maharashtra</h4>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Vocational and medical assistance in Govandi, Bhiwandi, Malegaon, and Aurangabad for informal sector labor households.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Urban slum outreach, child education assistance, legal aid support, and stray animal rescue networks.</p>
             </div>
           </div>
 
@@ -639,59 +653,17 @@
       </div>
     </section>
 
-    <!-- Field Work Gallery Section -->
-    <section id="gallery" class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Authentic Field Impact</span>
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Ground Relief &amp; Community Moments</h2>
-          </div>
-          <p class="text-xs text-slate-500 max-w-md">
-            Direct glimpses of ration distribution, de-addiction youth sessions, free medical camps, and disaster relief conducted across Kashmir and regional districts.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Ration & Food Aid" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
-              <span class="text-xs font-bold text-white">Ration &amp; Iftar Distribution</span>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" alt="Free Medical Camp" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
-              <span class="text-xs font-bold text-white">Free Clinic &amp; Hijama Camps</span>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Orphan Education" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
-              <span class="text-xs font-bold text-white">Madrasa Student Kits</span>
-            </div>
-          </div>
-          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" alt="Winter Aid" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
-              <span class="text-xs font-bold text-white">Winter Blankets &amp; Coal Aid</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Zakat / Donation Multi-Gateway Portal -->
+    <!-- Interactive Donation Multi-Gateway Portal -->
     <section id="donate" class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-12">
           <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-3">
-            100% Verified Zakat &amp; Sadaqah Desk
+            Universal Relief &amp; Animal Welfare Desk
           </div>
-          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">Fulfill Your Religious &amp; Social Duty</h2>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">Support Living Beings in Need</h2>
           <p class="mt-3 text-slate-600 dark:text-slate-400 text-base">
-            Donate via Instant UPI QR, Direct Bank Transfer, or Online Cards. 50% Tax Deduction certificate provided under Section 80G.
+            Donate securely via Instant UPI QR, Direct Bank Wire, or Cards. 50% Tax Deduction certificate provided under Section 80G.
           </p>
         </div>
 
@@ -704,15 +676,16 @@
               Contribution &amp; Tax Receipt Info
             </h3>
 
-            <!-- Donation Category / Islamic Fund Type -->
+            <!-- Welfare Fund Classification -->
             <div>
-              <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Select Donation Classification *</label>
+              <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Select Purpose of Contribution *</label>
               <select id="donationCategory" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm font-semibold focus:ring-2 focus:ring-emerald-600 outline-none">
-                <option value="Zakat (Strictly Eligible Beneficiaries)">Zakat (زكاة - Strictly Deserving Recipients)</option>
-                <option value="Sadaqah Jariyah (Long-Term Welfare)">Sadaqah Jariyah (صدقة جارية - Water, Hospital, Education)</option>
-                <option value="Sadaqah Nafilah (General Charity)">Sadaqah Nafilah (صدقة عامة - Immediate Food & Medical)</option>
-                <option value="Fitrah / Kaffarah / Fidya">Fitrah / Kaffarah / Fidya (فدية وكفارة)</option>
-                <option value="General Community Donation">General Non-Profit Charitable Grant</option>
+                <option value="General Humanitarian Welfare">General Humanitarian &amp; Poverty Relief</option>
+                <option value="Animal Welfare & Rescue">Animal Welfare, Rescue &amp; Treatment</option>
+                <option value="Youth Rehab & Healthcare">Youth Substance Recovery &amp; Mental Health</option>
+                <option value="Child Education Sponsorship">Underprivileged Child Education &amp; Skills</option>
+                <option value="Women Empowerment Fund">Women Livelihood &amp; Vocational Kits</option>
+                <option value="Emergency Medical Relief">Critical Illness &amp; Emergency Surgeries</option>
               </select>
             </div>
 
@@ -737,25 +710,25 @@
             <div>
               <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Target Initiative</label>
               <select id="donationCause" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm font-medium focus:ring-2 focus:ring-emerald-600 outline-none">
-                <option value="Youth Drug De-addiction & Rehabilitation">Youth Narcotics De-Addiction &amp; Psychiatric Care</option>
-                <option value="Orphan Support & Dowry-Free Mass Nikah">Orphan Girl Mass Marriages &amp; Family Grant</option>
-                <option value="Madrasa Modernization & Civil Service Coaching">Scholarships &amp; Computer Centers for Youth</option>
-                <option value="Destitute Widows Rations & Sewing Labs">Widow Self-Help Groups &amp; Tailoring Units</option>
-                <option value="Free Medical Clinics & Dialysis Assistance">Free Healthcare Camps &amp; Emergency Medicine</option>
-                <option value="Winter Coal, Blankets & Flood Relief">Winter Blankets &amp; Emergency Ration Kits</option>
+                <option value="Youth De-addiction & Psychological Care">Youth De-Addiction &amp; Psychiatric Recovery</option>
+                <option value="Stray Animal Medical Aid & Rescue">Stray Animal Rescue &amp; Veterinary Clinics</option>
+                <option value="Underprivileged Education & Tech Labs">Inclusive School Kits &amp; Computer Literacy</option>
+                <option value="Women Self-Help & Tailoring Units">Women Livelihood Toolkits &amp; Centers</option>
+                <option value="Free Rural Medical Camps & Medicines">Universal Healthcare Camps &amp; Diagnostics</option>
+                <option value="Disaster Food Packets & Winter Blankets">Emergency Rations &amp; Winter Care</option>
               </select>
             </div>
 
             <!-- Donor Personal Details -->
             <div class="space-y-3">
               <div>
-                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Full Name (or "Anonymous Servant of Allah") *</label>
-                <input type="text" id="donorName" placeholder="e.g. Tariq Ahmad Khan" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Full Name (or Anonymous Supporter) *</label>
+                <input type="text" id="donorName" placeholder="e.g. Sajad Ahmad" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Email Address (for Receipt) *</label>
-                  <input type="email" id="donorEmail" placeholder="tariq@example.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                  <input type="email" id="donorEmail" placeholder="sajad@example.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
                 </div>
                 <div>
                   <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Phone Number *</label>
@@ -769,7 +742,7 @@
             </div>
 
             <div class="rounded-xl p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300">
-              <span class="font-bold">Income Tax 80G:</span> Donors receive 50% tax deduction under Indian Income Tax Act (Regn: <strong>AACTI1633HF20231</strong>).
+              <span class="font-bold">Income Tax 80G:</span> Donors receive 50% tax deduction under Indian Income Tax Act (Reg: <strong>AACTI1633HF20231</strong>).
             </div>
           </div>
 
@@ -891,7 +864,7 @@
 
                 <div class="mt-4 pt-4 border-t border-emerald-200 dark:border-emerald-800/60 flex flex-wrap items-center justify-between gap-3">
                   <p class="text-xs text-slate-600 dark:text-slate-300">
-                    Keep your transaction reference / UTR number to generate your instant 80G Zakat certificate.
+                    Keep your transaction reference / UTR number to generate your instant 80G tax certificate.
                   </p>
                   <button onclick="openReceiptGeneratorModal('Direct Bank Wire (NEFT/RTGS)')" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shadow">
                     <i data-lucide="file-check-2" class="w-4 h-4"></i> Enter UTR &amp; Get Receipt
@@ -913,7 +886,7 @@
                 <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
                   <div class="flex justify-between items-center text-sm pb-2 border-b border-slate-100 dark:border-slate-700">
                     <span class="text-slate-500">Beneficiary Fund:</span>
-                    <span class="font-bold text-slate-800 dark:text-white">IPRO Relief &amp; Zakat Fund</span>
+                    <span class="font-bold text-slate-800 dark:text-white">IPRO Universal Welfare Fund</span>
                   </div>
                   <div class="flex justify-between items-center text-sm pb-2 border-b border-slate-100 dark:border-slate-700">
                     <span class="text-slate-500">Exemption Status:</span>
@@ -1070,7 +1043,7 @@
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Connect with IPRO</span>
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Get in Touch or Seek Help</h2>
             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-              Whether you need youth drug de-addiction consultation, free medical camp assistance, orphan support, or wish to discharge your Zakat / CSR funds, our regional representatives are ready.
+              Whether you need youth rehabilitation counseling, animal rescue aid, orphan student support, or wish to collaborate under CSR mandates, our team is at your service.
             </p>
 
             <div class="space-y-4 pt-2">
@@ -1117,7 +1090,7 @@
           <!-- Contact Form -->
           <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Send an Official Message</h3>
-            <p class="text-xs text-slate-500 mb-6">Inquiries regarding rehabilitation assistance, Zakat eligibility, or corporate partnership</p>
+            <p class="text-xs text-slate-500 mb-6">Inquiries regarding rehabilitation assistance, animal rescue, or partnership grants</p>
 
             <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1134,9 +1107,10 @@
               <div>
                 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Inquiry Subject</label>
                 <select class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
-                  <option>Zakat &amp; Sadaqah Consultation</option>
+                  <option>Humanitarian Aid Consultation</option>
+                  <option>Animal Rescue &amp; Veterinary Support</option>
                   <option>Youth De-addiction &amp; Medical Rehab</option>
-                  <option>Orphan Girl Marriage Sponsorship</option>
+                  <option>Child Education &amp; Sponsorship</option>
                   <option>CSR Partnership (MCA Approved)</option>
                   <option>80G Tax Exemption Query</option>
                   <option>Volunteer Program Registration</option>
@@ -1145,7 +1119,7 @@
 
               <div>
                 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Your Message</label>
-                <textarea rows="4" required placeholder="Describe your requirement or message..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none"></textarea>
+                <textarea rows="4" required placeholder="Describe your requirement or inquiry..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none"></textarea>
               </div>
 
               <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm">
@@ -1171,7 +1145,7 @@
             <span>IPRO INDIA</span>
           </div>
           <p class="text-xs text-slate-400 leading-relaxed">
-            International Peace &amp; Rehabilitation Organisation is a registered public charitable trust under J&amp;K Govt and NITI Aayog, working towards community welfare, youth de-addiction, and social justice.
+            International Peace &amp; Rehabilitation Organisation is a registered public charitable trust under J&amp;K Govt and NITI Aayog, working towards community welfare, youth de-addiction, social justice, and animal care.
           </p>
           <p class="text-xs font-semibold text-emerald-400">
             Head Office: Hyderbeigh Pattan, Baramulla, J&amp;K 193101
@@ -1191,13 +1165,13 @@
         </div>
 
         <div>
-          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Islamic Welfare Pillars</h4>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Universal Pillars</h4>
           <ul class="space-y-1.5 text-xs">
-            <li>Youth Narcotics De-Addiction Recovery</li>
-            <li>Orphan Girl Mass Nikah Grants</li>
-            <li>Widow Self-Help Sewing Units</li>
-            <li>Madrasa &amp; Modern IT Education Kits</li>
-            <li>Free Community Health Clinics</li>
+            <li>Youth Substance De-Addiction Recovery</li>
+            <li>Animal Rescue &amp; Veterinary Aid</li>
+            <li>Underprivileged Child Education Kits</li>
+            <li>Women Self-Reliance &amp; Sewing Units</li>
+            <li>Free Community Healthcare Clinics</li>
           </ul>
         </div>
 
@@ -1210,7 +1184,7 @@
             <p class="text-slate-400 text-[11px]">Branch: Hyderbeigh Pattan</p>
           </div>
           <p class="text-[11px] text-slate-500 mt-2">
-            Accounts audited annually by registered Chartered Accountants under Trust Act.
+            Accounts audited annually by registered Chartered Accountants under the Trust Act.
           </p>
         </div>
 
@@ -1278,7 +1252,7 @@
     </div>
   </div>
 
-  <!-- Modal 2: 80G Tax Exemption & Zakat Receipt -->
+  <!-- Modal 2: 80G Tax Exemption Official Receipt -->
   <div id="receiptModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative text-slate-900">
       
@@ -1290,7 +1264,7 @@
       <div id="printReceiptArea" class="space-y-6">
         <div class="border-b-2 border-emerald-700 pb-4 text-center">
           <div class="inline-block px-3 py-1 rounded bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-widest mb-1">
-            Section 80G Official Donation / Zakat Receipt
+            Section 80G Official Donation Receipt
           </div>
           <h2 class="text-xl sm:text-2xl font-black text-emerald-950 uppercase">
             INTERNATIONAL PEACE &amp; REHABILITATION ORGANISATION
@@ -1313,14 +1287,14 @@
           </div>
           <div class="text-right">
             <span class="text-slate-500 block">Date &amp; Time:</span>
-            <span class="font-semibold text-slate-900" id="receiptDateVal">23-Oct-2026</span>
+            <span class="font-semibold text-slate-900" id="receiptDateVal">27-Oct-2026</span>
           </div>
         </div>
 
         <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 text-xs">
           <div class="flex justify-between py-1 border-b border-slate-200">
             <span class="text-slate-500 font-medium">Donor Name:</span>
-            <span class="font-bold text-slate-900" id="receiptDonorName">Tariq Ahmad</span>
+            <span class="font-bold text-slate-900" id="receiptDonorName">Valued Supporter</span>
           </div>
           <div class="flex justify-between py-1 border-b border-slate-200">
             <span class="text-slate-500 font-medium">Donor PAN:</span>
@@ -1328,11 +1302,11 @@
           </div>
           <div class="flex justify-between py-1 border-b border-slate-200">
             <span class="text-slate-500 font-medium">Classification:</span>
-            <span class="font-bold text-emerald-800" id="receiptCategory">Zakat (Strictly Eligible Beneficiaries)</span>
+            <span class="font-bold text-emerald-800" id="receiptCategory">General Humanitarian Welfare</span>
           </div>
           <div class="flex justify-between py-1 border-b border-slate-200">
             <span class="text-slate-500 font-medium">Target Cause:</span>
-            <span class="font-semibold text-slate-900" id="receiptCause">Humanitarian Relief</span>
+            <span class="font-semibold text-slate-900" id="receiptCause">Universal Relief</span>
           </div>
           <div class="flex justify-between py-1 border-b border-slate-200">
             <span class="text-slate-500 font-medium">Payment Mode &amp; Channel:</span>
@@ -1345,7 +1319,7 @@
         </div>
 
         <p class="text-[11px] text-slate-600 leading-relaxed italic bg-emerald-50/70 p-3 rounded-lg border border-emerald-200">
-          "This certifies that the indicated amount has been received by International Peace &amp; Rehabilitation Organisation as a voluntary charitable contribution/Zakat. Eligible for income tax deduction under Section 80G(5)(iv) of the Income Tax Act, 1961."
+          "This certifies that the indicated amount has been received by International Peace &amp; Rehabilitation Organisation as a voluntary charitable contribution. Eligible for income tax deduction under Section 80G(5)(iv) of the Income Tax Act, 1961."
         </p>
 
         <div class="pt-4 flex justify-between items-end text-xs">
@@ -1398,7 +1372,7 @@
     let qrInstance = null;
 
     function updateQrCode(amount) {
-      const upiUrl = `upi://pay?pa=${vpa}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${encodeURIComponent('IPRO Zakat Charity')}`;
+      const upiUrl = `upi://pay?pa=${vpa}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${encodeURIComponent('IPRO Humanitarian Welfare')}`;
       
       const qrContainer = document.getElementById('qrcodeCanvas');
       qrContainer.innerHTML = '';
@@ -1515,7 +1489,7 @@
     }
 
     function launchGatewayModal() {
-      const name = document.getElementById('donorName').value.trim() || 'Servant of Allah';
+      const name = document.getElementById('donorName').value.trim() || 'Supporter of Humanity';
       document.getElementById('modalAmountDisplay').textContent = '₹' + Number(selectedAmount).toLocaleString('en-IN');
       document.getElementById('modalDonorDisplay').textContent = name;
       document.getElementById('gatewayModal').classList.remove('hidden');
@@ -1527,7 +1501,7 @@
 
     function executeSimulatedPayment() {
       const btn = document.getElementById('simPayBtn');
-      btn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span> Verifying Gateway Response...`;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span> Processing Gateway...`;
       btn.disabled = true;
 
       setTimeout(() => {
@@ -1540,7 +1514,7 @@
     }
 
     function openReceiptGeneratorModal(paymentModeLabel) {
-      const name = document.getElementById('donorName').value.trim() || 'Supporter of Khidmah';
+      const name = document.getElementById('donorName').value.trim() || 'Supporter of Humanity';
       const email = document.getElementById('donorEmail').value.trim() || 'info@donor.org';
       const phone = document.getElementById('donorPhone').value.trim() || '+91 9800000000';
       const pan = (document.getElementById('donorPan').value.trim() || 'NOT SPECIFIED').toUpperCase();
@@ -1570,7 +1544,7 @@
 
     function handleContactSubmit(e) {
       e.preventDefault();
-      showToast('Jazakallah Khair! Your message has been dispatched to IPRO administration.');
+      showToast('Thank you! Your inquiry has been dispatched to IPRO administration.');
       e.target.reset();
     }
 
