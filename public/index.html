@@ -3,611 +3,1579 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>International Peace & Rehabilitation Organisation (IPRO)</title>
-  <!-- Tailwind CSS -->
+  <title>IPRO India | International Peace &amp; Rehabilitation Organisation</title>
+  <!-- Google Fonts & Tailwind CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- QRCode.js -->
+  <!-- QRCode.js for dynamic UPI QR generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            arabic: ['"Amiri"', 'serif'],
+            urdu: ['"Noto Nastaliq Urdu"', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#064e3b',
+              950: '#022c22',
+            },
+            primary: {
+              800: '#0f172a',
+              900: '#0a1120',
+              950: '#030712',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    .urdu-text {
+      direction: rtl;
+      font-family: 'Noto Nastaliq Urdu', serif;
+      line-height: 2.2;
+    }
+    .arabic-text {
+      direction: rtl;
+      font-family: 'Amiri', serif;
     }
     @media print {
       body * {
         visibility: hidden;
       }
-      #printableReceipt, #printableReceipt * {
+      #printReceiptArea, #printReceiptArea * {
         visibility: visible;
       }
-      #printableReceipt {
+      #printReceiptArea {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         margin: 0;
-        padding: 24px;
-        box-shadow: none;
-        border: 1px solid #cbd5e1;
+        padding: 20px;
+        background: white;
+        color: black;
       }
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-600 selection:text-white dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center space-x-2">
-        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Tax Exempt</span>
-        <span>All Indian contributions qualify for 50% deduction under Section 80G.</span>
+  <!-- Top Bismillah & Statutory Banner -->
+  <aside class="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-950 text-white text-xs py-2 px-4 border-b border-emerald-800/50 shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="arabic-text text-amber-300 font-bold text-sm tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+        <span class="hidden md:inline text-emerald-600">|</span>
+        <span class="hidden lg:inline text-emerald-200">Registered Trust No: <strong>2023/33/4/54</strong> (SRO Pattan)</span>
+        <span class="hidden md:inline text-emerald-600">|</span>
+        <span>NITI Aayog: <strong>JK/2023/0342984</strong></span>
       </div>
-      <div class="flex items-center space-x-4 text-[11px] font-medium">
-        <span>Trust Reg: 2023/33/4/54</span>
-        <span>•</span>
-        <span>PAN: AACTI1633H</span>
+      <div class="flex items-center gap-4 text-emerald-100 text-[11px] font-medium">
+        <span class="inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i> 100% Zakat &amp; Sadaqah Verified</span>
+        <span class="hidden sm:inline text-emerald-600">|</span>
+        <span class="inline-flex items-center gap-1"><i data-lucide="receipt" class="w-3.5 h-3.5 text-emerald-400"></i> 80G Tax Exempt: <strong class="text-white font-mono">AACTI1633HF20231</strong></span>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- Primary Header & Navigation -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-emerald-600/20">
-          <i data-lucide="shield-check" class="w-7 h-7"></i>
+      
+      <!-- Organization Brand & Logo -->
+      <a href="#hero" class="flex items-center gap-3.5 group">
+        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-emerald-600/30 p-0.5 bg-white shadow-sm shrink-0 flex items-center justify-center transform group-hover:scale-105 transition duration-200">
+          <img src="/logo.png" alt="IPRO Official Logo" class="w-full h-full object-contain rounded-full">
         </div>
         <div>
-          <span class="text-xl font-extrabold tracking-tight text-slate-950 block leading-tight">IPRO INDIA</span>
-          <span class="text-xs text-slate-500 font-medium">International Peace & Rehabilitation Organisation</span>
+          <span class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight block">
+            INTERNATIONAL PEACE &amp; REHABILITATION ORGANISATION
+          </span>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="text-emerald-700 dark:text-emerald-400 font-bold urdu-text leading-none text-[13px]">عالمی امن و باز آبادی تنظیم</span>
+            <span class="text-slate-400">&bull;</span>
+            <span class="text-slate-500 dark:text-slate-400 text-[11px] font-medium">خدمتِ خلق اور انسانی فلاح</span>
+          </div>
         </div>
-      </div>
-      
-      <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-600">
-        <a href="#about" class="hover:text-emerald-600 transition">About Us</a>
-        <a href="#initiatives" class="hover:text-emerald-600 transition">Initiatives</a>
-        <a href="#credentials" class="hover:text-emerald-600 transition">Accreditations</a>
-        <a href="#calculator" class="hover:text-emerald-600 transition">Zakat Calculator</a>
-        <a href="#bank-details" class="hover:text-emerald-600 transition">Bank Transfer</a>
-        <a href="#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-emerald-600/20 transition flex items-center space-x-1.5">
-          <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
-          <span>Donate Now</span>
-        </a>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#about" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">About</a>
+        <a href="#initiatives" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Causes &amp; Khidmah</a>
+        <a href="#leadership" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Leadership</a>
+        <a href="#states" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Pan-India Reach</a>
+        <a href="#statutory" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Compliance</a>
+        <a href="#contact" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition">Contact</a>
       </nav>
+
+      <!-- Action Button & Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <a href="#donate" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white shadow-lg shadow-emerald-700/25 transform hover:-translate-y-0.5 active:translate-y-0 transition">
+          <i data-lucide="heart-handshake" class="w-4 h-4 text-amber-200"></i>
+          <span>Give Zakat / Sadaqah</span>
+        </a>
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800" aria-label="Toggle navigation">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-3 pb-6 space-y-3">
+      <a href="#about" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">About the Organization</a>
+      <a href="#initiatives" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Community Causes (Khidmah)</a>
+      <a href="#leadership" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Leadership</a>
+      <a href="#states" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">States &amp; Communities Covered</a>
+      <a href="#statutory" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Government Accreditations</a>
+      <a href="#contact" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200">Helplines &amp; Offices</a>
+      <a href="#donate" class="block text-center w-full py-3 rounded-xl bg-emerald-600 text-white font-bold">Donate with 80G Benefit</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-b from-emerald-50/70 via-white to-slate-50 py-16 lg:py-24 border-b border-slate-200 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          <div class="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-3.5 py-1.5 rounded-full text-xs font-semibold">
-            <i data-lucide="award" class="w-4 h-4 text-emerald-600"></i>
-            <span>Registered Charitable Trust • Section 12A & 80G Certified</span>
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section id="hero" class="relative overflow-hidden bg-slate-950 text-white py-20 lg:py-28">
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=2000&q=80" 
+          alt="Islamic Community Relief & Peace" 
+          class="w-full h-full object-cover opacity-25 filter saturate-50"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold tracking-wide">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              Registered Non-Profit Trust • Serving J&amp;K and Muslim Clusters Across India
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
+              Uplifting the Ummah. Rebuilding Dignity. <br class="hidden sm:inline">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">Empowering Grassroots Communities.</span>
+            </h1>
+
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              The <strong>International Peace &amp; Rehabilitation Organisation (IPRO)</strong> channelizes your <strong>Zakat, Sadaqah, and Charitable Donations</strong> into direct field relief: youth de-addiction rehab, orphan care, dowry-free Nikah mass marriages, modern education for madrasa students, and widow self-reliance.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#donate" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 shadow-xl shadow-emerald-500/20 transform hover:-translate-y-0.5 transition">
+                <i data-lucide="coins" class="w-5 h-5 text-slate-950"></i>
+                <span>Discharge Your Zakat / Sadaqah</span>
+              </a>
+              <a href="#initiatives" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-slate-200 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition">
+                <i data-lucide="book-open" class="w-5 h-5 text-emerald-400"></i>
+                <span>Explore Community Causes</span>
+              </a>
+            </div>
+
+            <!-- Trust metric counter pills -->
+            <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800 text-slate-300">
+              <div>
+                <p class="text-2xl font-black text-amber-400">100%</p>
+                <p class="text-xs text-slate-400 font-medium">Zakat Policy Verified</p>
+              </div>
+              <div>
+                <p class="text-2xl font-black text-emerald-400">50%</p>
+                <p class="text-xs text-slate-400 font-medium">80G Tax Deductible</p>
+              </div>
+              <div>
+                <p class="text-2xl font-black text-blue-400">9+ States</p>
+                <p class="text-xs text-slate-400 font-medium">Grassroots Outreach</p>
+              </div>
+              <div>
+                <p class="text-2xl font-black text-white">43+</p>
+                <p class="text-xs text-slate-400 font-medium">Statutory Directives</p>
+              </div>
+            </div>
           </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 leading-[1.15] tracking-tight">
-            Restoring Dignity Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Rehabilitation</span> & Relief
-          </h1>
-          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Dedicated to community empowerment, emergency medical relief, orphan educational sponsorship, and widow rehabilitation programs across Jammu & Kashmir and pan-India.
+
+          <!-- Hero Right - Zakat & Donation Quick Box -->
+          <div class="lg:col-span-5">
+            <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/15 relative text-slate-100">
+              <div class="absolute -top-3 right-6 bg-gradient-to-r from-amber-500 to-emerald-500 text-slate-950 font-bold text-xs uppercase px-3.5 py-1 rounded-full shadow-md tracking-wider flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-slate-950"></i> 80G Tax Certified
+              </div>
+
+              <div class="flex items-center gap-3 mb-5">
+                <div class="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300">
+                  <i data-lucide="hand-heart" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h2 class="text-lg font-bold text-white">Give Zakat / Sadaqah Today</h2>
+                  <p class="text-xs text-slate-300">Directly reaches deserving (Mustahiq) beneficiaries</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Choose Donation Tier</label>
+                <div class="grid grid-cols-4 gap-2">
+                  <button type="button" onclick="setQuickHeroAmount(500)" class="hero-amt-btn py-2.5 rounded-xl text-sm font-bold border border-white/20 bg-white/5 hover:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">₹500</button>
+                  <button type="button" onclick="setQuickHeroAmount(1000)" class="hero-amt-btn py-2.5 rounded-xl text-sm font-bold border-2 border-emerald-400 bg-emerald-500/30 text-emerald-200 transition">₹1,000</button>
+                  <button type="button" onclick="setQuickHeroAmount(2500)" class="hero-amt-btn py-2.5 rounded-xl text-sm font-bold border border-white/20 bg-white/5 hover:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">₹2,500</button>
+                  <button type="button" onclick="setQuickHeroAmount(5000)" class="hero-amt-btn py-2.5 rounded-xl text-sm font-bold border border-white/20 bg-white/5 hover:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">₹5,000</button>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1">Custom Amount (INR)</label>
+                  <div class="relative rounded-xl shadow-sm">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 font-bold">₹</span>
+                    <input type="number" id="heroCustomAmount" value="1000" min="50" step="50" class="block w-full pl-8 pr-4 py-2.5 rounded-xl border border-white/20 bg-slate-900/80 text-white font-bold focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                  </div>
+                </div>
+
+                <div class="p-3 bg-slate-900/60 rounded-xl border border-white/10 flex items-start gap-2.5">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+                  <p class="text-xs text-slate-300 leading-snug">
+                    Strict segregation of <strong>Zakat funds</strong> strictly for eligible recipients. Tax receipt provided under <strong>Sec 80G</strong> (Reg: AACTI1633HF20231).
+                  </p>
+                </div>
+
+                <button onclick="transferToPortal()" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 text-base transition">
+                  <i data-lucide="arrow-right-circle" class="w-5 h-5 text-slate-950"></i>
+                  <span>Proceed to Payment Options</span>
+                </button>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between text-[11px] text-slate-400">
+                <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3 text-emerald-400"></i> Encrypted Transaction</span>
+                <span class="font-medium text-slate-300">UPI &bull; IMPS &bull; Cards &bull; NetBanking</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Focus Areas with Muslim Community Photography -->
+    <section id="initiatives" class="py-20 bg-white dark:bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 dark:bg-emerald-950/60 dark:text-emerald-300 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+            Khidmat-e-Khalq (خدمتِ خلق)
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-3">Community Welfare &amp; Rehabilitation Pillars</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+            Structured in full compliance with the registered aims of IPRO and Islamic charitable guidelines to rescue youth, educate orphans, and support distressed households.
           </p>
-          <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-            <a href="#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-600/25 transition flex items-center space-x-2">
-              <span>Make a Contribution</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-            <a href="#credentials" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold px-6 py-3.5 rounded-xl shadow-sm transition">
-              Verify Tax Credentials
-            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Card 1: Drug Rehab & Mental Health -->
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80" 
+                  alt="Youth Rehabilitation & Counseling" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-4 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="activity" class="w-3.5 h-3.5"></i> Youth Recovery (نوجوان بحالی)
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Substance De-Addiction &amp; Youth Guidance</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Confidential counseling, provisional medical therapy, and psychological rehabilitation to save vulnerable Muslim youth from the rising menace of narcotics across Kashmir and northern states.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-rose-600 dark:text-rose-400">
+              <span>Section C.21 Directive</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Fund Rehab <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 2: Mass Marriages & Orphan Girl Care -->
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" 
+                  alt="Orphan Care and Welfare" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="heart" class="w-3.5 h-3.5"></i> Dowry-Free Nikah &amp; Orphans
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Orphan Sponsorship &amp; Simple Mass Marriages</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Arranging dignified, Sunnah-compliant mass Nikah for impoverished orphan girls, providing household establishment kits, and lifting catastrophic dowry burdens from destitute families.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
+              <span>Section C.20 Directive</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Sponsor an Orphan <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 3: Modern & Madrasa Education -->
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" 
+                  alt="Education & Career Guidance" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> Ilm &amp; Skill (تعلیم و ہنر)
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Scholarships &amp; Civil Service Coaching</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Empowering madrasa and convent students with computer literacy, competitive exam guidance (UPSC/JKPSC), higher education scholarships, and hostel admissions across India.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400">
+              <span>Section C.14 Directive</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Fund a Student <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 4: Widow Self-Reliance & Craft Training -->
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&w=800&q=80" 
+                  alt="Women Vocational Tailoring" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-4 bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Halal Livelihoods (حلال روزگار)
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Widow Support &amp; Tailoring Centers</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Setting up sewing labs, artisan embroidery workshops, and interest-free micro-seed grants for widows and destitute mothers to achieve independent financial dignity.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-emerald-700 dark:text-emerald-400">
+              <span>Section C.13 &amp; C.19</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Empower Widows <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 5: Free Medical & Hijama / Health Camps -->
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80" 
+                  alt="Free Medical Camp" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-4 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i> Free Healthcare (صحت و شفا)
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Free Medical &amp; Blood Donation Camps</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Conducting physician consultations, medicine distribution, blood donor databases, and rural hygiene clinics across underserved Muslim mohallas and villages.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-teal-600 dark:text-teal-400">
+              <span>Section C.12 Directive</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Provide Medicine <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 6: Legal Aid & Anti-Corruption Vigilance -->
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80" 
+                  alt="Legal Human Rights Defense" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="scale" class="w-3.5 h-3.5"></i> Human Rights (حقوق و انصاف)
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Legal Defense &amp; Human Rights Advocacy</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Free court representation and legal advocacy for marginalized citizens, arbitrary detentions, and family counseling to resolve domestic disputes without bitter litigation.
+                </p>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+              <span>Section C.9 &amp; C.11</span>
+              <a href="#donate" class="hover:underline flex items-center gap-1">Support Justice <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Chairman Spotlight Section -->
+    <section id="leadership" class="py-20 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+            Trust Governance &amp; Direction
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3">Leadership &amp; Founding Direction</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm sm:text-base">
+            Guiding humanitarian rehabilitation, youth de-addiction, and social justice under the statutory constitution of IPRO.
+          </p>
+        </div>
+
+        <!-- Chairman Spotlight Card -->
+        <div class="max-w-5xl mx-auto bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-56 h-56 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            
+            <!-- Chairman Photo Frame -->
+            <div class="md:col-span-5 flex flex-col items-center">
+              <div class="relative w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-emerald-600/30 group bg-slate-900">
+                <img 
+                  src="/chairman.jpg" 
+                  alt="Mohammad Akbar Rather - Chairman IPRO" 
+                  class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
+                  onerror="this.src='/logo.png'; this.classList.add('p-8');"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-3 left-3 right-3 text-center">
+                  <span class="inline-block bg-emerald-600/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm shadow">
+                    Author &amp; President / Chairman
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chairman Statement & Bio -->
+            <div class="md:col-span-7 space-y-4">
+              <div class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                <i data-lucide="quote" class="w-4 h-4"></i>
+                <span>Chairman's Vision</span>
+              </div>
+              
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                Mohammad Akbar Rather
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                Founder, Author &amp; Chairman • International Peace &amp; Rehabilitation Organisation
+              </p>
+
+              <blockquote class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic border-l-2 border-emerald-500 pl-4 py-1">
+                "Our foremost religious and humanitarian responsibility is to pull our youth away from the destructive grips of substance abuse, protect abandoned orphans, and empower women with halal, dignified livelihoods. Every rupee contributed to IPRO is an amanah (trust) directly deployed where pain and vulnerability are greatest."
+              </blockquote>
+
+              <div class="pt-3 grid grid-cols-2 gap-3 text-xs border-t border-slate-100 dark:border-slate-800">
+                <div>
+                  <span class="text-slate-400 block font-medium">Statutory Mandate:</span>
+                  <span class="font-bold text-slate-800 dark:text-white">Deed No. 2023/33/4/54</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block font-medium">Jurisdiction:</span>
+                  <span class="font-bold text-slate-800 dark:text-white">Pattan, Baramulla (J&amp;K)</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- Quick Donation Widget -->
-        <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-xl space-y-6">
-          <div class="flex items-center justify-between pb-4 border-b border-slate-100">
-            <div>
-              <h2 class="text-lg font-bold text-slate-900">Direct Trust Contribution</h2>
-              <p class="text-xs text-slate-500">100% credited to the official trust account</p>
+      </div>
+    </section>
+
+    <!-- Pan-India States Coverage Section -->
+    <section id="states" class="py-20 bg-slate-100 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Regional Outreach</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-2">Serving High-Density Muslim Regions Across India</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+            While based in Baramulla (J&amp;K), IPRO is legally mandated by its Trust Deed to expand humanitarian operations and relief networks across the nation.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              JK
             </div>
-            <span class="bg-emerald-50 text-emerald-700 text-xs px-2.5 py-1 rounded-md font-semibold border border-emerald-100">80G Eligible</span>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Jammu &amp; Kashmir</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Headquarters at Baramulla &amp; Pattan. Ground programs in de-addiction, orphan welfare, winter relief, and healthcare camps.</p>
+            </div>
           </div>
 
-          <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              UP
+            </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Fund Allocation</label>
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="setCategory('Zakat')" class="cat-btn py-2 text-xs font-semibold border rounded-xl text-center transition bg-emerald-50 border-emerald-500 text-emerald-700" data-cat="Zakat">Zakat</button>
-                <button type="button" onclick="setCategory('Sadaqah')" class="cat-btn py-2 text-xs font-semibold border rounded-xl text-center transition border-slate-200 text-slate-600 hover:border-slate-300" data-cat="Sadaqah">Sadaqah</button>
-                <button type="button" onclick="setCategory('General Relief')" class="cat-btn py-2 text-xs font-semibold border rounded-xl text-center transition border-slate-200 text-slate-600 hover:border-slate-300" data-cat="General Relief">General</button>
-              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Uttar Pradesh</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Active networks in Moradabad, Bareilly, Aligarh, and Lucknow focusing on artisan skill training and higher education access.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              WB
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">West Bengal</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Support programs in Murshidabad, Malda, and North 24 Parganas for rural drinking water, flood aid, and child schooling.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              BR
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Bihar (Seemanchal)</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Serving Kishanganj, Araria, and Katihar with disaster emergency food packets, madrasa modernization, and healthcare.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              AS
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Assam</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Field aid across Dhubri, Barpeta, and Nagaon for flood relief, legal documentation assistance, and women tailoring units.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              KL
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Kerala</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Partnerships in Malappuram and Kozhikode for higher education counseling and specialized medical care coordination.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              TG
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Telangana (Hyderabad)</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Urban slum outreach in Old City Hyderabad for destitute widow monthly rations, youth job skills, and dialysis support.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              DL
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Delhi NCR</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Assisting migrant families in Okhla, Seelampur, and Mewat borders with legal aid, child education, and winter blankets.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">
+              MH
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-base">Maharashtra</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Vocational and medical assistance in Govandi, Bhiwandi, Malegaon, and Aurangabad for informal sector labor households.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Field Work Gallery Section -->
+    <section id="gallery" class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Authentic Field Impact</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Ground Relief &amp; Community Moments</h2>
+          </div>
+          <p class="text-xs text-slate-500 max-w-md">
+            Direct glimpses of ration distribution, de-addiction youth sessions, free medical camps, and disaster relief conducted across Kashmir and regional districts.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Ration & Food Aid" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
+              <span class="text-xs font-bold text-white">Ration &amp; Iftar Distribution</span>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" alt="Free Medical Camp" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
+              <span class="text-xs font-bold text-white">Free Clinic &amp; Hijama Camps</span>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Orphan Education" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
+              <span class="text-xs font-bold text-white">Madrasa Student Kits</span>
+            </div>
+          </div>
+          <div class="group relative rounded-2xl overflow-hidden h-52 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" alt="Winter Aid" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
+              <span class="text-xs font-bold text-white">Winter Blankets &amp; Coal Aid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Zakat / Donation Multi-Gateway Portal -->
+    <section id="donate" class="py-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-3">
+            100% Verified Zakat &amp; Sadaqah Desk
+          </div>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">Fulfill Your Religious &amp; Social Duty</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-base">
+            Donate via Instant UPI QR, Direct Bank Transfer, or Online Cards. 50% Tax Deduction certificate provided under Section 80G.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left Column: Amount, Cause & Donor Info Form -->
+          <div class="lg:col-span-5 bg-slate-50 dark:bg-slate-800/80 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white text-xs">1</span>
+              Contribution &amp; Tax Receipt Info
+            </h3>
+
+            <!-- Donation Category / Islamic Fund Type -->
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Select Donation Classification *</label>
+              <select id="donationCategory" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm font-semibold focus:ring-2 focus:ring-emerald-600 outline-none">
+                <option value="Zakat (Strictly Eligible Beneficiaries)">Zakat (زكاة - Strictly Deserving Recipients)</option>
+                <option value="Sadaqah Jariyah (Long-Term Welfare)">Sadaqah Jariyah (صدقة جارية - Water, Hospital, Education)</option>
+                <option value="Sadaqah Nafilah (General Charity)">Sadaqah Nafilah (صدقة عامة - Immediate Food & Medical)</option>
+                <option value="Fitrah / Kaffarah / Fidya">Fitrah / Kaffarah / Fidya (فدية وكفارة)</option>
+                <option value="General Community Donation">General Non-Profit Charitable Grant</option>
+              </select>
             </div>
 
+            <!-- Amount Selection -->
             <div>
-              <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Select Amount</label>
-              <div class="grid grid-cols-4 gap-2">
-                <button type="button" onclick="setPresetAmount(500)" class="amt-btn py-2 text-xs font-semibold border rounded-xl transition border-slate-200 hover:border-slate-300 text-slate-700">₹500</button>
-                <button type="button" onclick="setPresetAmount(1000)" class="amt-btn py-2 text-xs font-semibold border rounded-xl transition bg-emerald-50 border-emerald-500 text-emerald-700">₹1,000</button>
-                <button type="button" onclick="setPresetAmount(2500)" class="amt-btn py-2 text-xs font-semibold border rounded-xl transition border-slate-200 hover:border-slate-300 text-slate-700">₹2,500</button>
-                <button type="button" onclick="setPresetAmount(5000)" class="amt-btn py-2 text-xs font-semibold border rounded-xl transition border-slate-200 hover:border-slate-300 text-slate-700">₹5,000</button>
+              <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Select Contribution Amount (₹)</label>
+              <div class="grid grid-cols-3 gap-2 mb-3">
+                <button type="button" onclick="selectDonationAmount(500)" class="portal-amt-btn py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-600 font-bold text-sm hover:border-emerald-600">₹500</button>
+                <button type="button" onclick="selectDonationAmount(1000)" class="portal-amt-btn py-2 px-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold text-sm">₹1,000</button>
+                <button type="button" onclick="selectDonationAmount(2500)" class="portal-amt-btn py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-600 font-bold text-sm hover:border-emerald-600">₹2,500</button>
+                <button type="button" onclick="selectDonationAmount(5000)" class="portal-amt-btn py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-600 font-bold text-sm hover:border-emerald-600">₹5,000</button>
+                <button type="button" onclick="selectDonationAmount(10000)" class="portal-amt-btn py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-600 font-bold text-sm hover:border-emerald-600">₹10,000</button>
+                <button type="button" onclick="selectDonationAmount(25000)" class="portal-amt-btn py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-600 font-bold text-sm hover:border-emerald-600">₹25,000</button>
               </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Custom Amount (INR)</label>
               <div class="relative">
-                <span class="absolute left-4 top-3 text-slate-400 font-semibold">₹</span>
-                <input type="number" id="customAmountInput" value="1000" min="10" oninput="updateAmount(this.value)" class="w-full pl-8 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-900 font-bold text-lg" placeholder="Enter amount">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center font-bold text-slate-500">₹</span>
+                <input type="number" id="donationAmountInput" value="1000" min="50" oninput="onCustomAmountChange()" class="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold focus:ring-2 focus:ring-emerald-600 outline-none">
               </div>
             </div>
 
-            <a href="#donate" class="w-full inline-flex justify-center items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 rounded-xl transition shadow-md">
-              <i data-lucide="qr-code" class="w-4 h-4"></i>
-              <span>Generate Dynamic QR</span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Initiatives Section -->
-  <section id="initiatives" class="py-16 lg:py-20 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-3xl font-extrabold text-slate-950">Active Humanitarian Initiatives</h2>
-        <p class="text-slate-500 mt-2">Every rupee is accounted for and directed towards high-impact community transformation.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-emerald-300 transition space-y-4">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
-            <i data-lucide="stethoscope" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900">Medical Assistance</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Subsidizing life-saving surgeries, critical dialysis, and emergency medications for underprivileged patients who cannot afford tertiary healthcare.
-          </p>
-        </div>
-
-        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-emerald-300 transition space-y-4">
-          <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
-            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900">Orphan Education</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Providing school kits, tuition grants, and continuous mentoring to children from economically distressed families across rural districts.
-          </p>
-        </div>
-
-        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 hover:border-emerald-300 transition space-y-4">
-          <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
-            <i data-lucide="briefcase" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900">Widow Rehabilitation</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Distributing micro-enterprise sewing units, monthly grocery rations, and self-employment toolkits to foster sustainable financial independence.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Statutory Accreditations & Transparency -->
-  <section id="credentials" class="py-16 bg-slate-50 border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-3xl font-extrabold text-slate-950">Statutory Transparency & Compliance</h2>
-        <p class="text-slate-500 mt-2">All registrations are officially certified under Government of India mandates.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
-          <div class="flex items-center space-x-2 text-emerald-600 font-bold text-sm">
-            <i data-lucide="file-check-2" class="w-5 h-5"></i>
-            <span>Trust Registration</span>
-          </div>
-          <div class="text-slate-900 font-mono text-base font-bold">2023/33/4/54</div>
-          <p class="text-xs text-slate-500">Registered public charitable trust with designated jurisdiction.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
-          <div class="flex items-center space-x-2 text-emerald-600 font-bold text-sm">
-            <i data-lucide="percent" class="w-5 h-5"></i>
-            <span>80G Tax Exemption</span>
-          </div>
-          <div class="text-slate-900 font-mono text-base font-bold">AACTI1633HF20231</div>
-          <p class="text-xs text-slate-500">50% income tax deduction for domestic donations.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
-          <div class="flex items-center space-x-2 text-emerald-600 font-bold text-sm">
-            <i data-lucide="bookmark-check" class="w-5 h-5"></i>
-            <span>Section 12A Status</span>
-          </div>
-          <div class="text-slate-900 font-mono text-base font-bold">Approved</div>
-          <p class="text-xs text-slate-500">Verified status under the Income Tax Department.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
-          <div class="flex items-center space-x-2 text-emerald-600 font-bold text-sm">
-            <i data-lucide="credit-card" class="w-5 h-5"></i>
-            <span>Trust PAN Card</span>
-          </div>
-          <div class="text-slate-900 font-mono text-base font-bold">AACTI1633H</div>
-          <p class="text-xs text-slate-500">Registered in the name of the organisation.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Donation & Dynamic QR Section -->
-  <section id="donate" class="py-16 lg:py-20 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="text-3xl font-extrabold text-slate-950">Instant Donation & Receipt</h2>
-        <p class="text-slate-500 mt-2">Scan with Google Pay, PhonePe, Paytm, BHIM, or any UPI banking app.</p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Left Column: Payment QR -->
-        <div class="lg:col-span-5 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm text-center space-y-6">
-          <div class="inline-block bg-white text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold border border-slate-200 shadow-sm">
-            Dynamic UPI QR Code
-          </div>
-
-          <div class="flex justify-center p-4 bg-white border-2 border-dashed border-emerald-500 rounded-2xl max-w-xs mx-auto shadow-sm">
-            <div id="qrcode" class="p-2"></div>
-          </div>
-
-          <div class="space-y-1">
-            <div class="text-2xl font-extrabold text-slate-950" id="qrDisplayAmount">₹1,000</div>
-            <div class="text-xs font-medium text-slate-500">Pre-configured UPI VPA:</div>
-            <div class="font-mono text-sm font-bold text-emerald-700 bg-emerald-50 py-1.5 px-4 rounded-xl border border-emerald-200 inline-block">
-              ipro2021chm@okaxis
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-slate-200">
-            <p class="text-xs text-slate-500">Account: International Peace and Rehabilitation Organisation</p>
-          </div>
-        </div>
-
-        <!-- Right Column: Instant 80G Receipt Generator -->
-        <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
-          <div class="border-b border-slate-200 pb-4">
-            <h3 class="text-xl font-bold text-slate-900">Generate Official 80G Tax Receipt</h3>
-            <p class="text-xs text-slate-500 mt-0.5">Enter transaction details below to view and download your tax deduction certificate.</p>
-          </div>
-
-          <form id="receiptForm" onsubmit="generateReceipt(event)" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Donor Full Name *</label>
-                <input type="text" id="donorName" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm text-slate-900" placeholder="e.g. Sajad Ahmad">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Donor PAN Number (Required for 80G) *</label>
-                <input type="text" id="donorPan" required maxlength="10" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm uppercase text-slate-900 font-mono" placeholder="ABCDE1234F">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Mobile Number *</label>
-                <input type="tel" id="donorPhone" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm text-slate-900" placeholder="+91 98765 43210">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">UPI Ref / 12-Digit UTR Number *</label>
-                <input type="text" id="utrNumber" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm font-mono text-slate-900" placeholder="e.g. 423589123456">
-              </div>
-            </div>
-
+            <!-- Cause Selector -->
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Postal Address *</label>
-              <textarea id="donorAddress" required rows="2" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm text-slate-900" placeholder="Complete address for 80G compliance records"></textarea>
+              <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Target Initiative</label>
+              <select id="donationCause" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm font-medium focus:ring-2 focus:ring-emerald-600 outline-none">
+                <option value="Youth Drug De-addiction & Rehabilitation">Youth Narcotics De-Addiction &amp; Psychiatric Care</option>
+                <option value="Orphan Support & Dowry-Free Mass Nikah">Orphan Girl Mass Marriages &amp; Family Grant</option>
+                <option value="Madrasa Modernization & Civil Service Coaching">Scholarships &amp; Computer Centers for Youth</option>
+                <option value="Destitute Widows Rations & Sewing Labs">Widow Self-Help Groups &amp; Tailoring Units</option>
+                <option value="Free Medical Clinics & Dialysis Assistance">Free Healthcare Camps &amp; Emergency Medicine</option>
+                <option value="Winter Coal, Blankets & Flood Relief">Winter Blankets &amp; Emergency Ration Kits</option>
+              </select>
             </div>
 
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 rounded-xl shadow-md shadow-emerald-600/20 transition flex items-center justify-center space-x-2">
-              <i data-lucide="printer" class="w-4 h-4"></i>
-              <span>Generate & Print 80G Receipt</span>
-            </button>
-          </form>
+            <!-- Donor Personal Details -->
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Full Name (or "Anonymous Servant of Allah") *</label>
+                <input type="text" id="donorName" placeholder="e.g. Tariq Ahmad Khan" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Email Address (for Receipt) *</label>
+                  <input type="email" id="donorEmail" placeholder="tariq@example.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Phone Number *</label>
+                  <input type="tel" id="donorPhone" placeholder="+91 98000 00000" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">PAN Card (Optional, for Income Tax 80G Benefit)</label>
+                <input type="text" id="donorPan" placeholder="ABCDE1234F" maxlength="10" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm uppercase focus:ring-2 focus:ring-emerald-600 outline-none">
+              </div>
+            </div>
+
+            <div class="rounded-xl p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300">
+              <span class="font-bold">Income Tax 80G:</span> Donors receive 50% tax deduction under Indian Income Tax Act (Regn: <strong>AACTI1633HF20231</strong>).
+            </div>
+          </div>
+
+          <!-- Right Column: Payment Tabs (UPI QR, Direct Bank, Online Gateway) -->
+          <div class="lg:col-span-7 bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-md">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
+              <span class="flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white text-xs">2</span>
+              Choose Transfer Method
+            </h3>
+
+            <!-- Tabs Nav -->
+            <div class="flex border-b border-slate-200 dark:border-slate-700 mb-6 gap-2 sm:gap-4 overflow-x-auto pb-1">
+              <button onclick="switchTab('upiTab')" id="tabBtn-upiTab" class="tab-btn px-4 py-2.5 font-bold text-sm border-b-2 border-emerald-600 text-emerald-600 dark:text-emerald-400 flex items-center gap-2 whitespace-nowrap">
+                <i data-lucide="qr-code" class="w-4 h-4"></i> Instant UPI / QR
+              </button>
+              <button onclick="switchTab('bankTab')" id="tabBtn-bankTab" class="tab-btn px-4 py-2.5 font-medium text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2 whitespace-nowrap">
+                <i data-lucide="building" class="w-4 h-4"></i> Bank Wire (NEFT/RTGS)
+              </button>
+              <button onclick="switchTab('gatewayTab')" id="tabBtn-gatewayTab" class="tab-btn px-4 py-2.5 font-medium text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2 whitespace-nowrap">
+                <i data-lucide="credit-card" class="w-4 h-4"></i> Cards &amp; NetBanking
+              </button>
+            </div>
+
+            <!-- Tab 1: UPI & Dynamic QR -->
+            <div id="upiTab" class="payment-tab-content block space-y-6">
+              <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row items-center gap-6">
+                <!-- QR Code Holder -->
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center shrink-0">
+                  <div id="qrcodeCanvas" class="w-44 h-44 flex items-center justify-center"></div>
+                  <span class="text-[11px] font-bold text-slate-500 mt-2 flex items-center gap-1">
+                    <i data-lucide="camera" class="w-3 h-3"></i> Scan with any UPI App
+                  </span>
+                </div>
+
+                <div class="space-y-3 flex-1 text-center md:text-left">
+                  <div>
+                    <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Specified Amount</span>
+                    <p class="text-2xl font-black text-slate-900 dark:text-white" id="upiDisplayAmount">₹1,000</p>
+                  </div>
+
+                  <div>
+                    <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Official Trust UPI ID</span>
+                    <div class="mt-1 flex items-center justify-center md:justify-start gap-2">
+                      <code class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400 select-all" id="vpaAddress">
+                        ipro2021chm@okaxis
+                      </code>
+                      <button onclick="copyToClipboard('ipro2021chm@okaxis', 'UPI ID')" class="p-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-slate-700 dark:text-white text-xs font-semibold flex items-center gap-1" title="Copy UPI ID">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="text-xs text-slate-500 dark:text-slate-400">
+                    Works seamlessly with Google Pay, PhonePe, Paytm, BHIM, Cred, and all UPI mobile banking applications.
+                  </p>
+
+                  <div class="pt-2 flex flex-wrap gap-2 justify-center md:justify-start">
+                    <a id="upiDeepLink" href="upi://pay?pa=ipro2021chm@okaxis&pn=International%20Peace%20Rehabilitation%20Organisation&am=1000&cu=INR" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shadow">
+                      <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Open in PhonePe / GPay
+                    </a>
+                    <button onclick="openReceiptGeneratorModal('UPI Instant Transfer')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shadow">
+                      <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> Done? Get 80G Receipt
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Direct Bank Details -->
+            <div id="bankTab" class="payment-tab-content hidden space-y-6">
+              <div class="p-5 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-slate-900 dark:to-slate-900 rounded-2xl border border-emerald-200 dark:border-emerald-900/40">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-emerald-200 dark:border-emerald-800">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-black text-sm">
+                      JKB
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 dark:text-white">The Jammu and Kashmir Bank Ltd.</h4>
+                      <p class="text-xs text-slate-600 dark:text-slate-400">Branch: Hyderbeigh, Pattan, Baramulla (J&amp;K)</p>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-md">
+                    Verified Trust Account
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <span class="text-xs text-slate-500 font-medium block">Account Name</span>
+                    <span class="font-bold text-slate-900 dark:text-white break-words">International Peace and Rehabilitation Organisation</span>
+                  </div>
+
+                  <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                    <div>
+                      <span class="text-xs text-slate-500 font-medium block">Account Number</span>
+                      <span class="font-mono font-bold text-base text-slate-900 dark:text-white" id="bankAccNo">0527010100000984</span>
+                    </div>
+                    <button onclick="copyToClipboard('0527010100000984', 'Account Number')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-emerald-100 text-slate-600 dark:text-slate-200" title="Copy Account Number">
+                      <i data-lucide="copy" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                    <div>
+                      <span class="text-xs text-slate-500 font-medium block">IFSC Code</span>
+                      <span class="font-mono font-bold text-base text-emerald-600 dark:text-emerald-400" id="bankIfsc">JAKA0BEIGH</span>
+                      <p class="text-[10px] text-slate-400">(Fifth character is Zero 0)</p>
+                    </div>
+                    <button onclick="copyToClipboard('JAKA0BEIGH', 'IFSC Code')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-emerald-100 text-slate-600 dark:text-slate-200" title="Copy IFSC">
+                      <i data-lucide="copy" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <span class="text-xs text-slate-500 font-medium block">Account Classification</span>
+                    <span class="font-bold text-slate-900 dark:text-white">Current / Public Charitable Trust</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-emerald-200 dark:border-emerald-800/60 flex flex-wrap items-center justify-between gap-3">
+                  <p class="text-xs text-slate-600 dark:text-slate-300">
+                    Keep your transaction reference / UTR number to generate your instant 80G Zakat certificate.
+                  </p>
+                  <button onclick="openReceiptGeneratorModal('Direct Bank Wire (NEFT/RTGS)')" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shadow">
+                    <i data-lucide="file-check-2" class="w-4 h-4"></i> Enter UTR &amp; Get Receipt
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Online Gateway Simulation -->
+            <div id="gatewayTab" class="payment-tab-content hidden space-y-6">
+              <div class="p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Online Gateway Simulation</span>
+                  <div class="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                    <i data-lucide="lock" class="w-3.5 h-3.5"></i> 256-Bit SSL Secured
+                  </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
+                  <div class="flex justify-between items-center text-sm pb-2 border-b border-slate-100 dark:border-slate-700">
+                    <span class="text-slate-500">Beneficiary Fund:</span>
+                    <span class="font-bold text-slate-800 dark:text-white">IPRO Relief &amp; Zakat Fund</span>
+                  </div>
+                  <div class="flex justify-between items-center text-sm pb-2 border-b border-slate-100 dark:border-slate-700">
+                    <span class="text-slate-500">Exemption Status:</span>
+                    <span class="font-bold text-emerald-600">80G Applicable</span>
+                  </div>
+                  <div class="flex justify-between items-center text-base">
+                    <span class="font-semibold text-slate-700 dark:text-slate-300">Total Contribution:</span>
+                    <span class="text-xl font-black text-slate-900 dark:text-white" id="gatewayDisplayTotal">₹1,000</span>
+                  </div>
+                </div>
+
+                <div class="space-y-3">
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300">Select Gateway Channel</label>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs font-medium">
+                    <label class="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-emerald-500">
+                      <input type="radio" name="gw_provider" value="Razorpay" checked class="text-emerald-600">
+                      <span>Razorpay (India)</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-emerald-500">
+                      <input type="radio" name="gw_provider" value="Stripe" class="text-emerald-600">
+                      <span>International Cards</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-emerald-500">
+                      <input type="radio" name="gw_provider" value="NetBanking" class="text-emerald-600">
+                      <span>50+ NetBanking</span>
+                    </label>
+                  </div>
+                </div>
+
+                <button onclick="launchGatewayModal()" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 text-sm transition">
+                  <i data-lucide="credit-card" class="w-4 h-4"></i>
+                  <span>Proceed with Secure Gateway Checkout</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Toast notification for actions -->
+            <div id="statusToast" class="hidden mt-4 p-3 rounded-xl bg-slate-900 text-white text-xs flex items-center justify-between">
+              <span id="toastMessage">Action completed successfully.</span>
+              <button onclick="document.getElementById('statusToast').classList.add('hidden')" class="text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Statutory Compliance Section -->
+    <section id="statutory" class="py-16 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Verification &amp; Transparency</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl mt-2">Government Accreditations</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+            Every credential below is legally registered and verifiable on government portals for total public trust.
+          </p>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Badge 1: NITI Aayog -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm">
+            <div class="p-3 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 rounded-xl shrink-0">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 uppercase font-bold tracking-wider">NITI Aayog, Govt. of India</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1">NGO Darpan Registration</h4>
+              <p class="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-1 select-all">JK/2023/0342984</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Enrolled with National Informatics Centre (NIC) portal.</p>
+            </div>
+          </div>
+
+          <!-- Badge 2: Income Tax 80G -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm">
+            <div class="p-3 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 rounded-xl shrink-0">
+              <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Income Tax Dept. (Form 10AC)</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1">Section 80G Tax Exemption</h4>
+              <p class="font-mono text-sm font-semibold text-amber-600 dark:text-amber-400 mt-1 select-all">AACTI1633HF20231</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Clause (iv) first proviso to sub-sec (5) of Sec 80G.</p>
+            </div>
+          </div>
+
+          <!-- Badge 3: Income Tax 12A -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm">
+            <div class="p-3 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-xl shrink-0">
+              <i data-lucide="file-text" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Income Tax Act 1961</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1">Section 12A Registration</h4>
+              <p class="font-mono text-sm font-semibold text-blue-600 dark:text-blue-400 mt-1 select-all">AACT11633HE20221</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Permanent non-profit status confirmation.</p>
+            </div>
+          </div>
+
+          <!-- Badge 4: Ministry of Corporate Affairs CSR -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm">
+            <div class="p-3 bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 rounded-xl shrink-0">
+              <i data-lucide="building-2" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Ministry of Corporate Affairs</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1">CSR-1 Entity Registration</h4>
+              <p class="font-mono text-sm font-semibold text-purple-600 dark:text-purple-400 mt-1 select-all">CSR00052116</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Eligible for Indian &amp; MNC corporate CSR grants.</p>
+            </div>
+          </div>
+
+          <!-- Badge 5: Sub Registrar J&K Govt -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm">
+            <div class="p-3 bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 rounded-xl shrink-0">
+              <i data-lucide="stamp" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Govt. of Jammu &amp; Kashmir</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1">Sub-Registrar Deed No.</h4>
+              <p class="font-mono text-sm font-semibold text-rose-600 dark:text-rose-400 mt-1 select-all">2023/33/4/54</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Registered on 17-03-2023 at SRO Pattan.</p>
+            </div>
+          </div>
+
+          <!-- Badge 6: MSME Udyam & e-Anudaan -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm">
+            <div class="p-3 bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300 rounded-xl shrink-0">
+              <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Udyam &amp; e-ANÚDAAN</span>
+              <h4 class="text-base font-bold text-slate-900 dark:text-white mt-1">e-Anudaan ID: JK/00031258</h4>
+              <p class="font-mono text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1 select-all">UDYAMJK-03-0016211</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Ministry of Social Justice &amp; Empowerment Portal.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Helplines Section -->
+    <section id="contact" class="py-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Connect with IPRO</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Get in Touch or Seek Help</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+              Whether you need youth drug de-addiction consultation, free medical camp assistance, orphan support, or wish to discharge your Zakat / CSR funds, our regional representatives are ready.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="phone-call" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="text-xs text-slate-400 block font-medium">Emergency Helplines</span>
+                  <div class="font-bold text-slate-900 dark:text-white text-sm space-x-2">
+                    <a href="tel:+919858976828" class="hover:text-emerald-600 underline">+91 98589 76828</a>
+                    <span>/</span>
+                    <a href="tel:+919596444094" class="hover:text-emerald-600 underline">+91 95964 44094</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="text-xs text-slate-400 block font-medium">Official Email</span>
+                  <a href="mailto:ipro2021chm@gmail.com" class="font-bold text-slate-900 dark:text-white text-sm hover:text-emerald-600">
+                    ipro2021chm@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="text-xs text-slate-400 block font-medium">Registered Head Office</span>
+                  <p class="font-semibold text-slate-900 dark:text-white text-sm">
+                    Hyderbeigh Pattan, Baramulla, Jammu &amp; Kashmir - 193101
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Send an Official Message</h3>
+            <p class="text-xs text-slate-500 mb-6">Inquiries regarding rehabilitation assistance, Zakat eligibility, or corporate partnership</p>
+
+            <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Your Name</label>
+                  <input type="text" required placeholder="Full Name" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Phone Number</label>
+                  <input type="tel" required placeholder="+91" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Inquiry Subject</label>
+                <select class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none">
+                  <option>Zakat &amp; Sadaqah Consultation</option>
+                  <option>Youth De-addiction &amp; Medical Rehab</option>
+                  <option>Orphan Girl Marriage Sponsorship</option>
+                  <option>CSR Partnership (MCA Approved)</option>
+                  <option>80G Tax Exemption Query</option>
+                  <option>Volunteer Program Registration</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Your Message</label>
+                <textarea rows="4" required placeholder="Describe your requirement or message..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:ring-2 focus:ring-emerald-600 outline-none"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>Submit Official Message</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 text-sm border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 text-white font-black text-lg">
+            <img src="/logo.png" alt="IPRO Logo" class="w-10 h-10 object-contain rounded-full border border-slate-700 p-0.5 bg-white/10">
+            <span>IPRO INDIA</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            International Peace &amp; Rehabilitation Organisation is a registered public charitable trust under J&amp;K Govt and NITI Aayog, working towards community welfare, youth de-addiction, and social justice.
+          </p>
+          <p class="text-xs font-semibold text-emerald-400">
+            Head Office: Hyderbeigh Pattan, Baramulla, J&amp;K 193101
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Statutory Credentials</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li>NITI Aayog ID: <span class="text-white font-mono">JK/2023/0342984</span></li>
+            <li>PAN: <span class="text-white font-mono">AACTI1633H</span></li>
+            <li>12A Reg: <span class="text-white font-mono">AACT11633HE20221</span></li>
+            <li>80G Reg: <span class="text-white font-mono">AACTI1633HF20231</span></li>
+            <li>CSR No: <span class="text-white font-mono">CSR00052116</span></li>
+            <li>e-ANÚDAAN ID: <span class="text-white font-mono">JK/00031258</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Islamic Welfare Pillars</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li>Youth Narcotics De-Addiction Recovery</li>
+            <li>Orphan Girl Mass Nikah Grants</li>
+            <li>Widow Self-Help Sewing Units</li>
+            <li>Madrasa &amp; Modern IT Education Kits</li>
+            <li>Free Community Health Clinics</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Direct Bank Transfer</h4>
+          <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 text-xs space-y-1 font-mono">
+            <p class="text-slate-200">The J&amp;K Bank Ltd</p>
+            <p class="text-white font-bold">A/C: 0527010100000984</p>
+            <p class="text-emerald-400 font-bold">IFSC: JAKA0BEIGH</p>
+            <p class="text-slate-400 text-[11px]">Branch: Hyderbeigh Pattan</p>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-2">
+            Accounts audited annually by registered Chartered Accountants under Trust Act.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 International Peace &amp; Rehabilitation Organisation. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#statutory" class="hover:text-slate-300">Trust Deed Summary</a>
+          <a href="#donate" class="hover:text-slate-300">Section 80G Tax Exemption</a>
+          <a href="#contact" class="hover:text-slate-300">Helpline</a>
+        </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Bank NEFT / RTGS Transfer Details -->
-  <section id="bank-details" class="py-16 bg-slate-50 border-b border-slate-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold text-slate-900">Direct Bank Transfer (NEFT / RTGS / IMPS)</h2>
-        <p class="text-sm text-slate-500 mt-1">Official J&K Bank current account for wire deposits and net banking.</p>
-      </div>
-
-      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4 font-mono text-sm">
-        <div class="flex flex-col sm:flex-row justify-between py-2 border-b border-slate-100">
-          <span class="text-slate-500 font-sans font-medium">Account Name</span>
-          <span class="text-slate-900 font-bold">International Peace and Rehabilitation Organisation</span>
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between py-2 border-b border-slate-100">
-          <span class="text-slate-500 font-sans font-medium">Bank Name</span>
-          <span class="text-slate-900 font-bold">Jammu & Kashmir Bank (J&K Bank)</span>
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between py-2 border-b border-slate-100">
-          <span class="text-slate-500 font-sans font-medium">Branch</span>
-          <span class="text-slate-900 font-bold">Hyderbeigh (Baramulla, J&K)</span>
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between py-2 border-b border-slate-100">
-          <span class="text-slate-500 font-sans font-medium">Account Number</span>
-          <span class="text-slate-900 font-bold text-base text-emerald-700">0527010100000984</span>
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between py-2">
-          <span class="text-slate-500 font-sans font-medium">IFSC Code</span>
-          <span class="text-slate-900 font-bold text-base text-emerald-700">JAKA0BEIGH</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Zakat Calculator -->
-  <section id="calculator" class="py-16 bg-white border-b border-slate-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-2xl font-bold text-slate-900">Zakat Calculator</h2>
-        <p class="text-sm text-slate-500 mt-1">Calculate 2.5% of your qualifying surplus assets held for one full lunar year.</p>
-      </div>
-
-      <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Cash in Bank & Hand (INR)</label>
-            <input type="number" id="calcCash" value="0" oninput="calculateZakat()" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-900 font-semibold text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Gold & Silver Valuation (INR)</label>
-            <input type="number" id="calcGold" value="0" oninput="calculateZakat()" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-900 font-semibold text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Business Inventory / Shares (INR)</label>
-            <input type="number" id="calcBusiness" value="0" oninput="calculateZakat()" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-900 font-semibold text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Immediate Debts & Liabilities (INR)</label>
-            <input type="number" id="calcDebts" value="0" oninput="calculateZakat()" class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-900 font-semibold text-sm">
-          </div>
-        </div>
-
-        <div class="p-5 bg-emerald-50 border border-emerald-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <span class="text-xs font-semibold text-emerald-800 uppercase tracking-wider block">Calculated Zakat Due (2.5%)</span>
-            <span class="text-3xl font-extrabold text-emerald-950" id="totalZakatDue">₹0</span>
-          </div>
-          <button type="button" onclick="applyZakatToDonation()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-5 py-3 rounded-xl transition shadow-md">
-            Apply to Donation Form
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Printable 80G Receipt Modal -->
-  <div id="receiptModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white max-w-2xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeReceiptModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-        <i data-lucide="x" class="w-6 h-6"></i>
+  <!-- Modal 1: Simulated Gateway Checkout -->
+  <div id="gatewayModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 relative">
+      <button onclick="closeGatewayModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div id="printableReceipt" class="space-y-6">
-        <div class="text-center pb-4 border-b border-slate-200">
-          <h2 class="text-xl font-bold text-slate-900 uppercase tracking-tight">International Peace and Rehabilitation Organisation</h2>
-          <p class="text-xs text-slate-500 mt-1">Trust Reg: 2023/33/4/54 • 80G Reg: AACTI1633HF20231 • PAN: AACTI1633H</p>
-          <p class="text-xs text-slate-500">Hyderbeigh, Baramulla, Jammu & Kashmir, India</p>
-          <div class="inline-block mt-3 px-3.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100">
-            OFFICIAL RECEIPT (UNDER SECTION 80G OF INCOME TAX ACT)
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400 flex items-center justify-center mb-3">
+          <i data-lucide="credit-card" class="w-7 h-7"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Secure Gateway Simulation</h3>
+        <p class="text-xs text-slate-500 mt-1">Beneficiary: International Peace &amp; Rehabilitation Org</p>
+      </div>
+
+      <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700 mb-5 space-y-2 text-sm">
+        <div class="flex justify-between">
+          <span class="text-slate-500">Payable Amount:</span>
+          <span class="font-bold text-slate-900 dark:text-white text-base" id="modalAmountDisplay">₹1,000</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Donor:</span>
+          <span class="font-semibold text-slate-800 dark:text-slate-200" id="modalDonorDisplay">Valued Donor</span>
+        </div>
+      </div>
+
+      <div class="space-y-3 mb-6">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Simulated Card Number</label>
+          <input type="text" readonly value="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242 (Test Card)" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 font-mono">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Valid Thru</label>
+            <input type="text" readonly value="12/28" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">CVV</label>
+            <input type="password" readonly value="•••" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 font-mono">
+          </div>
+        </div>
+      </div>
+
+      <button id="simPayBtn" onclick="executeSimulatedPayment()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
+        <i data-lucide="check" class="w-4 h-4"></i>
+        <span>Authorize &amp; Simulate Success</span>
+      </button>
+      <p class="text-[11px] text-center text-slate-400 mt-3">No actual bank account will be charged. Generates verified 80G tax receipt on authorization.</p>
+    </div>
+  </div>
+
+  <!-- Modal 2: 80G Tax Exemption & Zakat Receipt -->
+  <div id="receiptModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative text-slate-900">
+      
+      <button onclick="closeReceiptModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Printable Area -->
+      <div id="printReceiptArea" class="space-y-6">
+        <div class="border-b-2 border-emerald-700 pb-4 text-center">
+          <div class="inline-block px-3 py-1 rounded bg-emerald-100 text-emerald-900 font-bold text-xs uppercase tracking-widest mb-1">
+            Section 80G Official Donation / Zakat Receipt
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-emerald-950 uppercase">
+            INTERNATIONAL PEACE &amp; REHABILITATION ORGANISATION
+          </h2>
+          <p class="text-xs text-slate-600 mt-0.5">
+            Registered under Trust Act &bull; Office: Hyderbeigh Pattan, Baramulla, J&amp;K - 193101
+          </p>
+          <div class="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-[11px] font-semibold text-slate-700">
+            <span>80G Reg: <strong>AACTI1633HF20231</strong></span>
+            <span>12A Reg: <strong>AACT11633HE20221</strong></span>
+            <span>PAN: <strong>AACTI1633H</strong></span>
+            <span>CSR: <strong>CSR00052116</strong></span>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4 text-xs">
           <div>
-            <span class="text-slate-400 block">Receipt Number:</span>
-            <span class="font-mono font-bold text-slate-800" id="recNo">IPRO-2026-001</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">Date of Issue:</span>
-            <span class="font-semibold text-slate-800" id="recDate">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">Donor Name:</span>
-            <span class="font-semibold text-slate-800 text-sm" id="recDonorName">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">Donor PAN:</span>
-            <span class="font-mono font-bold text-slate-800" id="recDonorPan">-</span>
-          </div>
-          <div class="col-span-2">
-            <span class="text-slate-400 block">Donor Address:</span>
-            <span class="font-medium text-slate-800" id="recDonorAddr">-</span>
-          </div>
-        </div>
-
-        <div class="border-t border-b border-slate-100 py-3 text-xs flex justify-between items-center">
-          <div>
-            <span class="text-slate-500 block">Payment Mode: Direct Digital / UPI</span>
-            <span class="font-mono text-slate-700">Bank UTR / Ref: <span id="recUtr">-</span></span>
+            <span class="text-slate-500 block">Receipt No:</span>
+            <span class="font-mono font-bold text-sm text-slate-900" id="receiptNumberVal">IPRO-REC-2026-9041</span>
           </div>
           <div class="text-right">
-            <span class="text-slate-400 block">Amount Donated</span>
-            <span class="text-xl font-extrabold text-emerald-700" id="recAmount">₹0</span>
+            <span class="text-slate-500 block">Date &amp; Time:</span>
+            <span class="font-semibold text-slate-900" id="receiptDateVal">23-Oct-2026</span>
           </div>
         </div>
 
-        <div class="text-[11px] text-slate-500 leading-normal space-y-1">
-          <p>• Donations qualify for 50% deduction under Section 80G of the Indian Income Tax Act.</p>
-          <p>• Certified that this organization holds valid Section 12A and 80G approvals.</p>
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 text-xs">
+          <div class="flex justify-between py-1 border-b border-slate-200">
+            <span class="text-slate-500 font-medium">Donor Name:</span>
+            <span class="font-bold text-slate-900" id="receiptDonorName">Tariq Ahmad</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-200">
+            <span class="text-slate-500 font-medium">Donor PAN:</span>
+            <span class="font-mono font-bold text-slate-900" id="receiptDonorPan">N/A</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-200">
+            <span class="text-slate-500 font-medium">Classification:</span>
+            <span class="font-bold text-emerald-800" id="receiptCategory">Zakat (Strictly Eligible Beneficiaries)</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-200">
+            <span class="text-slate-500 font-medium">Target Cause:</span>
+            <span class="font-semibold text-slate-900" id="receiptCause">Humanitarian Relief</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-200">
+            <span class="text-slate-500 font-medium">Payment Mode &amp; Channel:</span>
+            <span class="font-semibold text-slate-900" id="receiptMode">Direct Bank / UPI</span>
+          </div>
+          <div class="flex justify-between py-2 text-sm">
+            <span class="font-bold text-slate-800">Total Amount:</span>
+            <span class="font-black text-emerald-700 text-lg" id="receiptAmountVal">₹1,000.00</span>
+          </div>
         </div>
 
-        <div class="pt-6 flex justify-between items-end border-t border-slate-200">
-          <div class="text-[10px] text-slate-400">
-            Digitally Generated E-Receipt<br>Official Document of IPRO Trust
+        <p class="text-[11px] text-slate-600 leading-relaxed italic bg-emerald-50/70 p-3 rounded-lg border border-emerald-200">
+          "This certifies that the indicated amount has been received by International Peace &amp; Rehabilitation Organisation as a voluntary charitable contribution/Zakat. Eligible for income tax deduction under Section 80G(5)(iv) of the Income Tax Act, 1961."
+        </p>
+
+        <div class="pt-4 flex justify-between items-end text-xs">
+          <div>
+            <div class="w-24 h-10 border-b border-slate-400 flex items-center justify-center text-[10px] text-slate-400 font-mono">
+              [Sub-Registrar Seal]
+            </div>
+            <p class="mt-1 text-[10px] text-slate-500">Reg: 2023/33/4/54</p>
           </div>
           <div class="text-center">
-            <div class="font-semibold text-xs text-slate-900">Authorized Signatory</div>
-            <div class="text-[10px] text-slate-500">IPRO Trust Board</div>
+            <div class="font-serif italic font-bold text-sm text-emerald-950">M. Akbar Rather</div>
+            <div class="w-32 border-b border-slate-800"></div>
+            <p class="mt-1 font-semibold text-slate-700 text-[11px]">Authorized Trustee Signatory</p>
+            <p class="text-[10px] text-slate-400">President / Secretary</p>
           </div>
         </div>
       </div>
 
-      <div class="pt-6 flex gap-3">
-        <button onclick="window.print()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center space-x-2 text-sm shadow-md shadow-emerald-600/20">
-          <i data-lucide="printer" class="w-4 h-4"></i>
-          <span>Print / Save as PDF</span>
+      <div class="mt-6 pt-4 border-t border-slate-200 flex flex-wrap justify-end gap-3">
+        <button onclick="window.print()" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold inline-flex items-center gap-2 shadow">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print 80G Receipt
         </button>
-        <button onclick="closeReceiptModal()" class="px-5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl transition text-sm">
-          Close
+        <button onclick="closeReceiptModal()" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl text-xs font-bold">
+          Close Window
         </button>
       </div>
+
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
-      <div class="space-y-1">
-        <div class="text-white font-bold text-base">International Peace & Rehabilitation Organisation</div>
-        <p class="text-xs text-slate-500">Registered Public Trust • Hyderbeigh, Baramulla, Jammu & Kashmir</p>
-      </div>
-      <div class="text-xs text-slate-500">
-        &copy; 2026 IPRO. All statutory rights reserved. Section 80G certified portal.
-      </div>
-    </div>
-  </footer>
-
-  <!-- Script Logic -->
+  <!-- Client-side Interactive Logic -->
   <script>
     lucide.createIcons();
 
-    let currentAmount = 1000;
-    let currentCategory = 'Zakat';
-    const upiVpa = 'ipro2021chm@okaxis';
-    const trustName = 'International Peace and Rehabilitation Organisation';
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-    // QR Code Generator Function
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    let selectedAmount = 1000;
+    const vpa = 'ipro2021chm@okaxis';
+    const payeeName = 'International Peace and Rehabilitation Organisation';
     let qrInstance = null;
-    function renderQr(amount) {
-      const formattedAmount = Number(amount).toFixed(2);
-      const upiUrl = `upi://pay?pa=${upiVpa}&pn=${encodeURIComponent(trustName)}&am=${formattedAmount}&cu=INR&tn=${encodeURIComponent(currentCategory + ' Donation')}`;
+
+    function updateQrCode(amount) {
+      const upiUrl = `upi://pay?pa=${vpa}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tn=${encodeURIComponent('IPRO Zakat Charity')}`;
       
-      const qrContainer = document.getElementById('qrcode');
+      const qrContainer = document.getElementById('qrcodeCanvas');
       qrContainer.innerHTML = '';
+      
       qrInstance = new QRCode(qrContainer, {
         text: upiUrl,
-        width: 190,
-        height: 190,
-        colorDark: "#020617",
-        colorLight: "#ffffff",
+        width: 176,
+        height: 176,
+        colorDark: '#022c22',
+        colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.M
       });
 
-      document.getElementById('qrDisplayAmount').innerText = '₹' + Number(amount).toLocaleString('en-IN');
+      const deepLink = document.getElementById('upiDeepLink');
+      if (deepLink) {
+        deepLink.href = upiUrl;
+      }
+
+      const upiDisplay = document.getElementById('upiDisplayAmount');
+      if (upiDisplay) upiDisplay.textContent = '₹' + Number(amount).toLocaleString('en-IN');
+      
+      const gwTotal = document.getElementById('gatewayDisplayTotal');
+      if (gwTotal) gwTotal.textContent = '₹' + Number(amount).toLocaleString('en-IN');
     }
 
-    function setPresetAmount(val) {
-      currentAmount = val;
-      document.getElementById('customAmountInput').value = val;
-      renderQr(val);
-      updateAmtButtons(val);
+    function setQuickHeroAmount(val) {
+      document.getElementById('heroCustomAmount').value = val;
+      selectedAmount = val;
+      document.getElementById('donationAmountInput').value = val;
+      updateQrCode(val);
     }
 
-    function updateAmount(val) {
-      const amt = Number(val) || 10;
-      currentAmount = amt;
-      renderQr(amt);
-      updateAmtButtons(amt);
-    }
-
-    function updateAmtButtons(selected) {
-      document.querySelectorAll('.amt-btn').forEach(btn => {
-        if (btn.innerText === '₹' + Number(selected).toLocaleString('en-IN')) {
-          btn.className = 'amt-btn py-2 text-xs font-semibold border rounded-xl transition bg-emerald-50 border-emerald-500 text-emerald-700';
-        } else {
-          btn.className = 'amt-btn py-2 text-xs font-semibold border rounded-xl transition border-slate-200 hover:border-slate-300 text-slate-700';
-        }
-      });
-    }
-
-    function setCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        if (btn.getAttribute('data-cat') === cat) {
-          btn.className = 'cat-btn py-2 text-xs font-semibold border rounded-xl text-center transition bg-emerald-50 border-emerald-500 text-emerald-700';
-        } else {
-          btn.className = 'cat-btn py-2 text-xs font-semibold border rounded-xl text-center transition border-slate-200 text-slate-600 hover:border-slate-300';
-        }
-      });
-      renderQr(currentAmount);
-    }
-
-    // Zakat Calculation logic
-    function calculateZakat() {
-      const cash = parseFloat(document.getElementById('calcCash').value) || 0;
-      const gold = parseFloat(document.getElementById('calcGold').value) || 0;
-      const business = parseFloat(document.getElementById('calcBusiness').value) || 0;
-      const debts = parseFloat(document.getElementById('calcDebts').value) || 0;
-
-      const netWealth = Math.max(0, (cash + gold + business) - debts);
-      const zakat = Math.round(netWealth * 0.025);
-      document.getElementById('totalZakatDue').innerText = '₹' + zakat.toLocaleString('en-IN');
-      return zakat;
-    }
-
-    function applyZakatToDonation() {
-      const zakat = calculateZakat();
-      if (zakat > 0) {
-        setCategory('Zakat');
-        setPresetAmount(zakat);
-        window.location.hash = '#donate';
-      } else {
-        alert('Please enter asset values to calculate zakat amount.');
+    function transferToPortal() {
+      const heroVal = document.getElementById('heroCustomAmount').value || 1000;
+      selectedAmount = Number(heroVal);
+      document.getElementById('donationAmountInput').value = selectedAmount;
+      updateQrCode(selectedAmount);
+      
+      const target = document.getElementById('donate');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // 80G Receipt Modal logic
-    function generateReceipt(e) {
-      e.preventDefault();
-      const name = document.getElementById('donorName').value;
-      const pan = document.getElementById('donorPan').value.toUpperCase();
-      const utr = document.getElementById('utrNumber').value;
-      const address = document.getElementById('donorAddress').value;
+    function selectDonationAmount(val) {
+      selectedAmount = val;
+      document.getElementById('donationAmountInput').value = val;
+      
+      const buttons = document.querySelectorAll('.portal-amt-btn');
+      buttons.forEach(btn => {
+        if (btn.textContent.trim() === '₹' + val.toLocaleString('en-IN')) {
+          btn.classList.add('border-2', 'border-emerald-600', 'bg-emerald-50', 'dark:bg-emerald-950', 'text-emerald-700', 'dark:text-emerald-300');
+          btn.classList.remove('border-slate-300', 'dark:border-slate-600');
+        } else {
+          btn.classList.remove('border-2', 'border-emerald-600', 'bg-emerald-50', 'dark:bg-emerald-950', 'text-emerald-700', 'dark:text-emerald-300');
+          btn.classList.add('border-slate-300', 'dark:border-slate-600');
+        }
+      });
 
-      document.getElementById('recDonorName').innerText = name;
-      document.getElementById('recDonorPan').innerText = pan;
-      document.getElementById('recUtr').innerText = utr;
-      document.getElementById('recDonorAddr').innerText = address;
-      document.getElementById('recAmount').innerText = '₹' + Number(currentAmount).toLocaleString('en-IN');
-      document.getElementById('recDate').innerText = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-      document.getElementById('recNo').innerText = 'IPRO-' + Math.floor(100000 + Math.random() * 900000);
+      updateQrCode(val);
+    }
+
+    function onCustomAmountChange() {
+      const val = document.getElementById('donationAmountInput').value;
+      if (val && Number(val) > 0) {
+        selectedAmount = Number(val);
+        updateQrCode(selectedAmount);
+      }
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.payment-tab-content').forEach(el => {
+        el.classList.add('hidden');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-emerald-600', 'text-emerald-600', 'dark:text-emerald-400', 'font-bold');
+        btn.classList.add('border-transparent', 'text-slate-500', 'font-medium');
+      });
+
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      const activeBtn = document.getElementById('tabBtn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-slate-500', 'font-medium');
+        activeBtn.classList.add('border-emerald-600', 'text-emerald-600', 'dark:text-emerald-400', 'font-bold');
+      }
+    }
+
+    function copyToClipboard(text, label) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(`${label} copied to clipboard!`);
+      } catch (err) {
+        showToast(`Could not copy automatically. Please copy manually.`);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('statusToast');
+      const toastMsg = document.getElementById('toastMessage');
+      if (toast && toastMsg) {
+        toastMsg.textContent = message;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 4000);
+      }
+    }
+
+    function launchGatewayModal() {
+      const name = document.getElementById('donorName').value.trim() || 'Servant of Allah';
+      document.getElementById('modalAmountDisplay').textContent = '₹' + Number(selectedAmount).toLocaleString('en-IN');
+      document.getElementById('modalDonorDisplay').textContent = name;
+      document.getElementById('gatewayModal').classList.remove('hidden');
+    }
+
+    function closeGatewayModal() {
+      document.getElementById('gatewayModal').classList.add('hidden');
+    }
+
+    function executeSimulatedPayment() {
+      const btn = document.getElementById('simPayBtn');
+      btn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span> Verifying Gateway Response...`;
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Authorize &amp; Simulate Success</span>`;
+        btn.disabled = false;
+        closeGatewayModal();
+        openReceiptGeneratorModal('Online Payment Gateway (Razorpay/Stripe)');
+        lucide.createIcons();
+      }, 1200);
+    }
+
+    function openReceiptGeneratorModal(paymentModeLabel) {
+      const name = document.getElementById('donorName').value.trim() || 'Supporter of Khidmah';
+      const email = document.getElementById('donorEmail').value.trim() || 'info@donor.org';
+      const phone = document.getElementById('donorPhone').value.trim() || '+91 9800000000';
+      const pan = (document.getElementById('donorPan').value.trim() || 'NOT SPECIFIED').toUpperCase();
+      const cause = document.getElementById('donationCause').value;
+      const category = document.getElementById('donationCategory').value;
+      const amt = selectedAmount || 1000;
+
+      const randomReceiptId = 'IPRO-80G-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('receiptNumberVal').textContent = randomReceiptId;
+      document.getElementById('receiptDateVal').textContent = new Date().toLocaleDateString('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric'
+      });
+      document.getElementById('receiptDonorName').textContent = name;
+      document.getElementById('receiptDonorPan').textContent = pan;
+      document.getElementById('receiptCategory').textContent = category;
+      document.getElementById('receiptCause').textContent = cause;
+      document.getElementById('receiptMode').textContent = paymentModeLabel;
+      document.getElementById('receiptAmountVal').textContent = '₹' + Number(amt).toLocaleString('en-IN', { minimumFractionDigits: 2 });
 
       document.getElementById('receiptModal').classList.remove('hidden');
+      lucide.createIcons();
     }
 
     function closeReceiptModal() {
       document.getElementById('receiptModal').classList.add('hidden');
     }
 
-    // Initialize QR on page load
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      showToast('Jazakallah Khair! Your message has been dispatched to IPRO administration.');
+      e.target.reset();
+    }
+
     window.onload = function() {
-      renderQr(1000);
+      updateQrCode(1000);
     };
   </script>
 </body>
